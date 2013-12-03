@@ -1,4 +1,0 @@
-LimeBootstrapServices
-=====================
-
-LimeBootstrap Services
