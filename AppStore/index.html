@@ -1,5 +1,40 @@
+<!DOCTYPE html>
 <html>
-	<body>
-		<h4>App Store</h4>
-	</body>
+  <head>
+    <title>LimeBootstrap Appstore</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/lbsmanual.css" rel="stylesheet">
+
+
+  </head>
+  <body>
+  <div class="jumbotron">
+    <h1>LIME Bootstrap Appstore</h1>
+    <p>...</p>
+    <p><a class="btn btn-primary btn-lg" role="button">Learn more</a></p>
+  </div>
+
+  <div class="container">
+    <!-- ko foreach: { data: data, as: 'approw' } -->
+    <div class="row">
+      <!-- ko foreach: approw -->
+      <div class="col-md-4">
+        <div class="app">
+          <h3 data-bind="text: name"></h3>
+        </div>
+      </div>
+      <!-- /ko -->
+    </div>
+    <!-- /ko -->
+  </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/knockout-3.0.0.js"></script>
+    <script type="text/javascript" src="js/knockout.mapping-latest.js"></script>
+    <script type="text/javascript" src="js/manual_content.js"></script>
+    <script type="text/javascript" src="js/lbsmanual.js"></script>
+    
+  </body>
 </html>
+
