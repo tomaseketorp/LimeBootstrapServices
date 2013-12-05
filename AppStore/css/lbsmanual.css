@@ -31,20 +31,26 @@ color:#FFF;
 
 .app .carousel .item{
 	height: 100px;
-	background-image: 
 }
 
-.app .carousel .carousel-indicators {
+ .carousel .carousel-indicators {
 	bottom: 0px;
 
 }
 
-.app .carousel .carousel-indicators li {
+.carousel .carousel-indicators li {
 	border-color: #000;
+}
+.carousel .carousel-indicators .active {
+	background-color: #000;
 
 }
 
-.app .carousel .carousel-indicators .active {
-	background-color: #000;
+.modal .modal-content{
+ -webkit-animation-delay: 0.3s;
+ -ms-animation-delay: 0.3s;
+}
 
+.modal .carousel .item{
+	height: 200px;
 }

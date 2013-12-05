@@ -13,14 +13,32 @@ ViewModel
 */
 var viewModel = function(rawData){
 	var self = this;
-	$(rawData).each(function(app){
-		app.readme = window.atob(app.readme);
+	$(rawData.apps).each(function(index,app){
+	
+		if(app.name){
+			app.readme = markdown.toHTML(app.readme);
+			app.appToggled= ko.observable(false);
+			app.toggleApp = function(app){
+					if(!app.appToggled()){
+						app.appToggled(true);
+					}else{
+						app.appToggled(false);
+					}
+			}
+						app.dummy = function(app){
+
+			}
+		}		
+	
+
 
 	});
 
+
+
 	rawData =	listToMatrix(rawData.apps, 3);
 	console.log(rawData);
-	this.data = ko.mapping.fromJS(rawData);
+	self.data = ko.mapping.fromJS(rawData);
 }
 
 function listToMatrix(list, elementsPerSubArray) {
