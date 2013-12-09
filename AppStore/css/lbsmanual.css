@@ -56,6 +56,6 @@ color:#FFF;
 	height: 200px;
 }
 
-.modal-dialog{
+.modal .modal-dialog{
 	width: 80%;
 }
