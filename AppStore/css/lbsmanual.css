@@ -55,3 +55,7 @@ color:#FFF;
 .modal .carousel .item{
 	height: 200px;
 }
+
+.modal-dialog{
+	width: 80%;
+}
