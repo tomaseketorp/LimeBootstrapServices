@@ -36,6 +36,14 @@ print("Server is ready!")
 
 lappStore = bottle.app()
 
+@lappStore.route('/')
+def send_static():
+    return static_file('/index.html', root='./main/')
+
+@lappStore.route('/:filename#.*#')
+def send_static(filename):
+    return static_file(filename, root='./main/')
+
 @lappStore.route('/API/apps/', method='GET')
 def getAllApps():
     return ghCon.getAppsJSON()
