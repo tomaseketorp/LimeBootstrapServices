@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Configuration;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,6 +17,8 @@ namespace ManualBuilder {
         public Builder(string sourcePath, string outPath){
             this.sourcePath = sourcePath;
             this.outPath = outPath;
+
+            toggleAllowUnsafeHeaderParsing(true);
         }
 
         public void build() { 
@@ -33,7 +37,7 @@ namespace ManualBuilder {
                     Console.WriteLine("Reading file: " + file);
                     c.md = this.readFile(file);
                     Console.WriteLine("Parsing file: " + file);
-                    c.html = this.getParsedMarkdown(c.md);
+                    //c.html = this.getParsedMarkdown(c.md);
                     col.Add(c);
                     Console.WriteLine("Chapter Added: " + c.name);
                 }
@@ -116,11 +120,13 @@ namespace ManualBuilder {
                 byte[] byteArray = Encoding.UTF8.GetBytes (markdownText);
                 request.ContentType = "text/plain";
                 request.ContentLength = byteArray.Length;
+                //request.Credentials = GetCredential("https://api.github.com/markdown/raw");
+                request.Headers.Add("Authorization", "Basic " + Convert.ToBase64String(new ASCIIEncoding().GetBytes("limebootstrap@lundalogik.se" + ":" + "potatis1")));
+                request.PreAuthenticate = true;
                 Stream dataStream = request.GetRequestStream ();
                 dataStream.Write (byteArray, 0, byteArray.Length);
                 dataStream.Close ();
                 WebResponse response = request.GetResponse ();
-                //Console.WriteLine (((HttpWebResponse)response).StatusDescription);
                 dataStream = response.GetResponseStream ();
                 StreamReader reader = new StreamReader (dataStream);
                 html = reader.ReadToEnd ();
@@ -132,6 +138,38 @@ namespace ManualBuilder {
             }
 
             return html;
+        }
+
+        private CredentialCache GetCredential(string url) {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3;
+            CredentialCache credentialCache = new CredentialCache();
+            credentialCache.Add(new System.Uri(url), "Basic", new NetworkCredential("limebootstrap@lundalogik.se", "potatis1"));
+            return credentialCache;
+        }
+
+        public static bool toggleAllowUnsafeHeaderParsing(bool enable) {
+            //Get the assembly that contains the internal class
+            Assembly assembly = Assembly.GetAssembly(typeof(SettingsSection));
+            if (assembly != null) {
+                //Use the assembly in order to get the internal type for the internal class
+                Type settingsSectionType = assembly.GetType("System.Net.Configuration.SettingsSectionInternal");
+                if (settingsSectionType != null) {
+                    //Use the internal static property to get an instance of the internal settings class.
+                    //If the static instance isn't created already invoking the property will create it for us.
+                    object anInstance = settingsSectionType.InvokeMember("Section",
+                    BindingFlags.Static | BindingFlags.GetProperty | BindingFlags.NonPublic, null, null, new object[] { });
+                    if (anInstance != null) {
+                        //Locate the private bool field that tells the framework if unsafe header parsing is allowed
+                        FieldInfo aUseUnsafeHeaderParsing = settingsSectionType.GetField("useUnsafeHeaderParsing", BindingFlags.NonPublic | BindingFlags.Instance);
+                        if (aUseUnsafeHeaderParsing != null) {
+                            aUseUnsafeHeaderParsing.SetValue(anInstance, enable);
+                            return true;
+                        }
+
+                    }
+                }
+            }
+            return false;
         }
     }
 }

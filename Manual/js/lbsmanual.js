@@ -1,8 +1,17 @@
+jQuery.fn.outerHTML = function(s) {
+    return s
+        ? this.before(s).remove()
+        : jQuery("<p>").append(this.eq(0).clone()).html();
+};
+
+function replaceAll(find, replace, str) {
+  return str.replace(new RegExp(find, 'g'), replace);
+}
+
 var lbsmanual = {
 	init : function(){
 		data = lbsmanual.fixData(manualcontent)
 		var vm = new viewModel(data);
-
 		
 
 		chapter = vm.getSelectedPage();
@@ -22,9 +31,19 @@ var lbsmanual = {
 			data[i].selected = false;
 			data[i].uri = ko.computed(function(){
 				return '?p='+data[i].name;
-			})
+			});
+			data[i].html = lbsmanual.parseMd(data[i].md);
+
+
 		})
 		return data;
+	},
+
+	parseMd : function(d){
+		var m = marked(d);
+		m = replaceAll('<table>','<table class="table table-striped table-bordered">',m)
+		console.log(m)
+		return m
 	}
 };
 
@@ -35,7 +54,8 @@ var linkObject = function(anchor,text,level){
 	this.level = ko.observable(level);
 	this.indent = ko.computed(function(){
 		return ((self.level()-1) * 15)+'px';
-	})
+	});
+
 }
 
 
