@@ -25,12 +25,12 @@ class EnableCors(object):
 print("Starting LappStore!")
 ghCon = browseGitHub.GitHubConnectorAppStore()
 print("Loading data from GitHub AppStore...")
-ghCon.getAppsJSON()
+#ghCon.getAppsJSON()
 
 print("Starting Core!")
 ghConCore = browseGitHub.GitHubConnectorCore()
 print("Loading data from GitHub Core...")
-ghConCore.getManualData()
+#ghConCore.getManualData()
 
 print("Server is ready!")
 
@@ -38,22 +38,30 @@ lappStore = bottle.app()
 
 @lappStore.route('/')
 def send_static():
-    return static_file('/index.html', root='./main/')
+    return static_file('/index.html', root='./web')
 
-@lappStore.route('/:filename#.*#')
+@lappStore.route('/appstore/')
+def send_static():
+    return static_file('appstore/index.html', root='./web')
+
+@lappStore.route('/manual/')
+def send_static():
+    return static_file('manual/index.html', root='./web')
+
+@lappStore.route('/<filename:path>')
 def send_static(filename):
-    return static_file(filename, root='./main/')
+    return static_file(filename, root='./web')
 
-@lappStore.route('/API/apps/', method='GET')
+@lappStore.route('/api/apps/', method='GET')
 def getAllApps():
     return ghCon.getAppsJSON()
 
-@lappStore.route('/API/apps/refresh', method='POST')
+@lappStore.route('/api/apps/refresh', method='POST')
 def refreshApps():
     ghCon.getAppsJSON(True)
     return {"status":"refresh successfull!"}
 
-@lappStore.route('/API/app/<app>' , method='GET')
+@lappStore.route('/api/app/<app>' , method='GET')
 def getApp(app = ""):
     apps = ghCon.getAppsJSON()
     print(app)
@@ -63,17 +71,11 @@ def getApp(app = ""):
     else:
         return {'error':'App does not exists'}
 
-@lappStore.route('/API/manual/', method='GET')
+@lappStore.route('/api/manual/', method='GET')
 def getManualData():
     return ghConCore.getManualData()
 
-@lappStore.route('/manual/:filename#.*#')
-def send_static(filename):
-    return static_file(filename, root='./Manual/')
 
-@lappStore.route('/appstore/:filename#.*#')
-def send_static(filename):
-    return static_file(filename, root='./AppStore/')
 
 lappStore.install(EnableCors())
 lappStore.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
