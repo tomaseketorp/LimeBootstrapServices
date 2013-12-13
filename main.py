@@ -25,12 +25,12 @@ class EnableCors(object):
 print("Starting LappStore!")
 ghCon = browseGitHub.GitHubConnectorAppStore()
 print("Loading data from GitHub AppStore...")
-#ghCon.getAppsJSON()
+ghCon.getAppsJSON()
 
 print("Starting Core!")
 ghConCore = browseGitHub.GitHubConnectorCore()
 print("Loading data from GitHub Core...")
-#ghConCore.getManualData()
+ghConCore.getManualData()
 
 print("Server is ready!")
 
@@ -50,7 +50,7 @@ def send_static():
 
 @lappStore.route('/<filename:path>')
 def send_static(filename):
-    return static_file(filename, root='./web')
+    return static_file(filename, root='./wxeb')
 
 @lappStore.route('/api/apps/', method='GET')
 def getAllApps():
