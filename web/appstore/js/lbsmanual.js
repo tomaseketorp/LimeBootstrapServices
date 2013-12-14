@@ -1,6 +1,6 @@
 var lbsappstore = {
 	init : function(){
-		$.getJSON("http://limebootstrap.lundalogik.com/API/apps/", function(data) { 
+		$.getJSON("/api/apps/", function(data) { 
 			var vm = new viewModel(data);
 			console.log(ko.mapping.toJS(vm));
 			ko.applyBindings(vm);
