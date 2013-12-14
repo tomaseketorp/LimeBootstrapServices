@@ -50,7 +50,7 @@ def send_static():
 
 @lappStore.route('/<filename:path>')
 def send_static(filename):
-    return static_file(filename, root='./wxeb')
+    return static_file(filename, root='./web')
 
 @lappStore.route('/api/apps/', method='GET')
 def getAllApps():
