@@ -1,0 +1,51 @@
+body{
+background: #b55f90; /* Old browsers */
+background: -moz-linear-gradient(-45deg, #b55f90 0%, #c47577 45%, #341a4a 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#b55f90), color-stop(45%,#c47577), color-stop(100%,#341a4a)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(-45deg, #b55f90 0%,#c47577 45%,#341a4a 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(-45deg, #b55f90 0%,#c47577 45%,#341a4a 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(-45deg, #b55f90 0%,#c47577 45%,#341a4a 100%); /* IE10+ */
+background: linear-gradient(135deg, #b55f90 0%,#c47577 45%,#341a4a 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b55f90', endColorstr='#341a4a',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+color:#FFF;
+font-family: 'Roboto', sans-serif ;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+font-family: 'Roboto', sans-serif ;
+font-weight: 100;
+	}
+
+.main{
+	position: absolute;
+	top:30%;
+	left:30%;
+}
+
+.button{
+	float: left;
+	margin-right: 50px;
+	margin-top: 20px;
+	padding:20px;
+	height: 150px;
+	background-color: rgba(0,0,0,0.5);
+	border-radius: 5px;	
+	cursor: pointer;
+	width: 200px;
+
+}
+
+.button h1{
+	padding-top: 15px;
+	text-align: center;
+	vertical-align: middle;
+}
+.button:hover{
+	background-color: rgba(255,255,255,0.3);
+}
+
+.button:hover h1{
+	color:#000;
+
+}
+

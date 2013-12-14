@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>LimeBootstrap Appstore</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/lbsmanual.css" rel="stylesheet">
+    <link href="./css/animate.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+
+  </head>
+  <body>
+      <header>
+      <nav class="navbar navbar-inverse navbar-fixed-top " role="navigation">
+        <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">LIME Bootstrap</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        </div>
+      </nav>
+
+        <div class="jumbotron">
+        <div class="container">
+          <h1>Appstore</h1>
+        </div>
+      </div>
+    </header>
+
+
+  <div class="container">
+    <!-- ko foreach: { data: data, as: 'approw' } -->
+    <div class="row">
+      <!-- ko foreach:{ data:approw, as: 'app'} -->
+      <!-- ko if: app.name -->
+      <!-- An app placeholder -->
+      <div class="col-md-4">
+        <!-- Mini app view -->
+        <div class="app" data-toggle="modal" data-bind="attr:{'data-target':'#expanded-' + app.name()}, click:app.toggleApp, css:{'animated fadeOut':app.appToggled()}">
+          <!-- App images-->
+          <div class="carousel slide" data-ride="carousel" data-bind="attr:{id:'carousel-' + app.name()}">
+              <!-- Wrapper for slides -->
+              <div class="carousel-inner">
+                <!-- ko foreach: app.images -->
+                <div class="item" data-bind="style:{background:'#F1F6FF url(' + $data +') no-repeat center'}, css:{active: $index() == 0}" ></div>
+                <!-- /ko -->
+              </div>
+              <!-- Indicators -->
+              <ol class="carousel-indicators">
+                <!-- ko foreach: app.images -->
+                <li class="active" data-bind="css:{active: $index() == 0}, attr:{'data-slide-to':$index(), 'data-taget':'#carousel-' + app.name()}"> </li>
+                <!-- /ko -->
+              </ol>
+            </div>
+          <h3 data-bind="text: app.name"></h3>
+          <!-- ko if: app.info -->
+          <span class="label label-default" data-bind="text:app.info.status()"></span>
+          <!-- /ko -->
+        </div>
+        <!--/ Mini app view -->
+
+        <!-- Expanded app view -->
+        <div class="modal " data-bind="attr:{id:'expanded-' + app.name()}, click:app.toggleApp">
+          <div class="modal-dialog">
+              <div class="modal-content" data-bind="css:{'animated bounceIn':app.appToggled()}">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title" data-bind="text:app.name, click: app.dummy, clickBubble: false"></h4>
+                </div>
+
+                <div class="modal-body" data-bind="click: app.dummy, clickBubble: false">
+                 <!-- App images-->
+                    <div class="carousel slide" data-ride="carousel" data-bind="attr:{id:'carousel-large' + app.name()}">
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                          <!-- ko foreach: app.images -->
+                          <div class="item" data-bind="style:{background:'#F1F6FF url(' + $data +') no-repeat center'}, css:{active: $index() == 0}" ></div>
+                          <!-- /ko -->
+                        </div>
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                          <!-- ko foreach: app.images -->
+                          <li class="active" data-bind="css:{active: $index() == 0}, attr:{'data-slide-to':$index(), 'data-taget':'#carousel-large' + app.name()}"> </li>
+                          <!-- /ko -->
+                        </ol>
+                      </div>
+                      <div data-bind="html:app.readme"></div>
+                </div>
+
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
+          <!-- /Expanded app view -->
+
+      </div>
+        <!-- /ko -->
+      <!-- /ko -->
+
+    </div>
+    <!-- /ko -->
+  
+  </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/knockout-3.0.0.js"></script>
+    <script type="text/javascript" src="js/knockout.mapping-latest.js"></script>
+    <script type="text/javascript" src="js/lbsmanual.js"></script>
+    <script type="text/javascript" src="js/markdown.min.js"></script>
+
+    
+  </body>
+</html>

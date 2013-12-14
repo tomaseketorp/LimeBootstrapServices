@@ -37,10 +37,11 @@ class GitHubConnectorAppStore:
 
                         #Load README for a app
                         readme = requests.get(self.baseURL + "/contents/" + appname + "/" + "README.md?ref=master",
-                                              auth=(self.github_user, self.github_password))
+                                              auth=(self.github_user, self.github_password),
+                                              headers={"Accept": "application/vnd.github.VERSION.raw"})
                         if readme.ok:
-                            json_readme = json.loads(readme.text)
-                            return_json["apps"][j].update({"readme": json_readme["content"]})
+                            #json_readme = json.loads(readme.text)
+                            return_json["apps"][j].update({"readme": readme.text})
 
                         #Load app.json for a app
                         info = requests.get(self.baseURL + "/contents/" + appname + "/" + "app.json?ref=master",
