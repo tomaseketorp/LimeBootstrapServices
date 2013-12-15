@@ -10,16 +10,20 @@ function replaceAll(find, replace, str) {
 
 var lbsmanual = {
 	init : function(){
-		data = lbsmanual.fixData(manualcontent)
-		var vm = new viewModel(data);
-		
+		lbsmanual.getData(function(data){
+			data = data.files;
+			data = lbsmanual.fixData(data);
 
-		chapter = vm.getSelectedPage();
-		console.log(chapter)
-		vm.selectChapter(chapter);
-		ko.applyBindings(vm);
-		vm.scrollspy.init();
-		vm.scrollspy.refresh();
+			var vm = new viewModel(data);
+
+			chapter = vm.getSelectedPage();
+	
+			vm.selectChapter(chapter);
+			ko.applyBindings(vm);
+			vm.scrollspy.init();
+			vm.scrollspy.refresh();
+		})
+
 	},
 
 	setSystemParams : function(){
@@ -27,22 +31,23 @@ var lbsmanual = {
 	},
 
 	fixData : function(data){
+		var dataCollecion = [];
 		$.each(data,function(i){
-			data[i].selected = false;
-			data[i].uri = ko.computed(function(){
-				return '?p='+data[i].name;
-			});
-			data[i].html = lbsmanual.parseMd(data[i].md);
-
-
+			dataCollecion.push(
+				new pageObject(data[i]['name'],data[i]['mdB64'])
+				);
 		})
-		return data;
+		console.log(dataCollecion)
+		return dataCollecion;
+	},
+
+	getData : function(callback){
+		$.getJSON("http://localhost:5000/api/manual/", callback);
 	},
 
 	parseMd : function(d){
 		var m = marked(d);
 		m = replaceAll('<table>','<table class="table table-striped table-bordered">',m)
-		console.log(m)
 		return m
 	}
 };
@@ -55,7 +60,36 @@ var linkObject = function(anchor,text,level){
 	this.indent = ko.computed(function(){
 		return ((self.level()-1) * 15)+'px';
 	});
+}
 
+var pageObject = function(filename,md){
+	var self = this;
+
+	this.selected = false;
+
+	this.filename = String(filename);
+
+	this.md = md;
+
+	this.name = ko.computed(function(){
+		return self.filename.replace('.md','');
+	});
+
+	this.uri = ko.computed(function(){
+		return '?p='+self.name();
+	});
+
+	this.humanName = ko.computed(function(){
+		return self.filename.replace('.md','').split('_')[1].replace(/([a-z])([A-Z])/g, '$1 $2');;
+	});
+	
+	this.index = ko.computed(function(){
+		return self.filename.split('_')[0];
+	});
+	
+	this.html = ko.computed(function(){
+		return lbsmanual.parseMd(Base64.decode(self.md));
+	});
 }
 
 
@@ -154,8 +188,3 @@ Lets get this party on the road
 $(function(){
 	lbsmanual.init();
 });
-
-
-
-
-

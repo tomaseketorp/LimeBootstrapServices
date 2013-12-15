@@ -108,12 +108,12 @@ class GitHubConnectorCore:
                         fContents = requests.get(filesJSON[i]["url"],auth=(self.github_user, self.github_password))
                         if fContents.ok:
                             contentsJSON = json.loads(fContents.text)
-
-                        rJSON["files"][j].update({"mdB64": contentsJSON["content"]})
+                            rJSON["files"][j].update({"mdB64": contentsJSON['content']})
                         j += 1
 
             #setup cache for faster responses
             self.cached_return_json = rJSON
+
             return rJSON
         else:
             print("Serving cached data")

@@ -25,7 +25,7 @@ class EnableCors(object):
 print("Starting LappStore!")
 ghCon = browseGitHub.GitHubConnectorAppStore()
 print("Loading data from GitHub AppStore...")
-ghCon.getAppsJSON()
+#ghCon.getAppsJSON()
 
 print("Starting Core!")
 ghConCore = browseGitHub.GitHubConnectorCore()
