@@ -2,6 +2,7 @@ import bottle
 from bottle import response
 from bottle import static_file
 import browseGitHub
+import getZipFromGitHub  
 import os
 
 
@@ -22,10 +23,12 @@ class EnableCors(object):
 
         return _enable_cors
 
+ghZip = getZipFromGitHub.getZipFromGitHub("https://github.com/Lundalogik/LimeBootstrapAppStore/archive/master.zip")
+
 print("Starting LappStore!")
 ghCon = browseGitHub.GitHubConnectorAppStore()
 print("Loading data from GitHub AppStore...")
-#ghCon.getAppsJSON()
+ghCon.getAppsJSON()
 
 print("Starting Core!")
 ghConCore = browseGitHub.GitHubConnectorCore()
@@ -48,9 +51,9 @@ def send_static():
 def send_static():
     return static_file('manual/index.html', root='./web')
 
-@lappStore.route('/<filename:path>')
+@lappStore.route('/web/<filename:path>')
 def send_static(filename):
-    return static_file(filename, root='./web')
+    return static_file(filename, root='./')
 
 @lappStore.route('/api/apps/', method='GET')
 def getAllApps():
@@ -61,7 +64,7 @@ def refreshApps():
     ghCon.getAppsJSON(True)
     return {"status":"refresh successfull!"}
 
-@lappStore.route('/api/app/<app>' , method='GET')
+@lappStore.route('/api/apps/<app>/' , method='GET')
 def getApp(app = ""):
     apps = ghCon.getAppsJSON()
     print(app)
@@ -70,6 +73,12 @@ def getApp(app = ""):
         return apps['apps'][app]
     else:
         return {'error':'App does not exists'}
+
+@lappStore.route('/api/apps/<app>/download/', method='GET')
+def getApp(app = ""):
+    path = ghZip.getAppZipFile(app)
+    print(path)
+    return static_file(path, root='./web')
 
 @lappStore.route('/api/manual/', method='GET')
 def getManualData():
