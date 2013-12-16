@@ -8,6 +8,22 @@ function replaceAll(find, replace, str) {
   return str.replace(new RegExp(find, 'g'), replace);
 }
 
+/**
+String.format
+*/
+if (!String.prototype.format) {
+    String.prototype.format = function () {
+        var args = arguments;
+        return this.replace(/{(\d+)}/g, function (match, number) {
+            return typeof args[number] != 'undefined'
+              ? args[number]
+              : match
+            ;
+        });
+    };
+}
+
+
 var lbsmanual = {
 	init : function(){
 		lbsmanual.getData(function(data){
@@ -37,28 +53,63 @@ var lbsmanual = {
 				new pageObject(data[i]['name'],data[i]['mdB64'])
 				);
 		})
-		console.log(dataCollecion)
 		return dataCollecion;
 	},
 
 	getData : function(callback){
-		$.getJSON("http://localhost:5000/api/manual/", callback);
+		if(lbsmanual.getURLParameter("s") == 'local'){
+			$.getJSON("http://localhost:5000/api/manual/", callback);
+		}else{
+			$.getJSON("http://limebootstrap.lundalogik.com/api/manual/", callback);
+		}
 	},
 
 	parseMd : function(d){
 		var m = marked(d);
 		m = replaceAll('<table>','<table class="table table-striped table-bordered">',m)
 		return m
-	}
+	},
+
+	/**
+    Fetch the url parameters from the GET-URL
+    */
+    getURLParameter : function(name) {
+        return decodeURI(
+            (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search) || [, null])[1]
+        );
+    },
 };
 
-var linkObject = function(anchor,text,level){
+var linkObject = function(text,level){
 	var self = this;
-	this.anchor = anchor;
-	this.text = text;
+
+	this.rawText = text;
+
+	this.text =  ko.computed(function(){
+		return self.rawText.replace(/(\r\n|\n|\r)/gm,"");
+	});
+
 	this.level = ko.observable(level);
+
+	this.name = ko.computed(function(){
+		return $.trim(
+				self.text()
+					.replace(/ /g,'')
+					.replace(/"/g, "")
+					.replace(/'/g, "")
+					.replace(/\(|\)/g, "")
+					.replace(/\./g, "")
+					.replace(/\?/g, "")
+					.replace(/\:/g, "")
+					).toLowerCase();
+	});
+
+	this.anchor = ko.computed(function(){
+		return '#'+self.name();
+	});
+
 	this.indent = ko.computed(function(){
-		return ((self.level()-1) * 15)+'px';
+		return ((self.level()) * 15)+'px';
 	});
 }
 
@@ -72,11 +123,17 @@ var pageObject = function(filename,md){
 	this.md = md;
 
 	this.name = ko.computed(function(){
-		return self.filename.replace('.md','');
+		return self.filename.replace('.md','').split('_')[1]
+		.replace(/ /g,'')
+					.replace(/"/g, "")
+					.replace(/'/g, "")
+					.replace(/\(|\)/g, "")
+					.replace(/\./g, "").toLowerCase();
 	});
 
 	this.uri = ko.computed(function(){
-		return '?p='+self.name();
+		var source = lbsmanual.getURLParameter("s");
+		return '?p='+self.name()+ (source != 'null' ? "&s="+source : "");
 	});
 
 	this.humanName = ko.computed(function(){
@@ -131,28 +188,22 @@ var viewModel = function(rawData){
 	    })
 	}
 
-	/**
-    Fetch the url parameters from the GET-URL
-    */
-    this.getURLParameter = function(name) {
-        return decodeURI(
-            (RegExp(name + '=' + '(.+?)(&|$)').exec(location.search) || [, null])[1]
-        );
-    }
-
     /**
     Generate menu
     */
     this.generateSidebar = function() {
-        $("h2, h3, h4, h5").each(function () {
-			var l = $(this).find("a.anchor");
+        self.sidebar([])
+        $("h1,h2, h3, h4").each(function () {
+			
 			var hIndex = parseInt(this.nodeName.substring(1)) - 1;
-        	$(this).attr("id",l.attr("name"))
-            link = new linkObject(
-            	l.attr("href"),
-            	$(this).text().replace(/(\r\n|\n|\r)/gm,""),
+			link = new linkObject(
+            	$(this).text(),
             	hIndex
             	);
+
+			//$(this).html('<a class="anchor" name="{0}" href="{1}"></a>{2}'.format(link.name(),link.anchor(),link.rawText));
+            $(this).attr("id",link.name())
+
             self.sidebar.push(link);
          });
     }
@@ -161,7 +212,7 @@ var viewModel = function(rawData){
     getSelectedPage
     */
     this.getSelectedPage = function() {
-       p = self.getURLParameter("p");
+       p = lbsmanual.getURLParameter("p");
        filtered = ko.utils.arrayFilter(self.data(), function(item) {
             return p == item.name();
         });
@@ -178,7 +229,10 @@ var viewModel = function(rawData){
     	self.chapter(item);
     	self.generateSidebar();
     	self.scrollspy.refresh();
+    	console.log(item.uri())
+    	window.history.pushState({},"", item.uri());
     }
+
 }
 
 
