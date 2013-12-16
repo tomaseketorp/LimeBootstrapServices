@@ -1,0 +1,1 @@
+C:\dev\LimeBootstrapServices\LimeBootstrapLocalManualApi\LimeBootstrapLocalManualApi\bin\Release\LimeBootstrapLocalManualApi.exe.config

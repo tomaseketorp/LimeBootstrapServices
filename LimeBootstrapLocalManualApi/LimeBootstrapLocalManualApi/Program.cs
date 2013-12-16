@@ -3,26 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Owin.Hosting;
 using System.Net.Http;
+using Microsoft.Owin.Hosting;
+
 
 namespace LimeBootstrapLocalManualApi {
     class Program {
-        static void Main() {
-            string baseAddress = "http://localhost:9000/";
+        static void Main(string[] args) {
 
-            // Start OWIN host 
-            using (WebApp.Start<Startup>(url: baseAddress)) {
-                // Create HttpCient and make a request to api/values 
-                HttpClient client = new HttpClient();
+            string sourcePath = args.Length > 0 ? args[0] : @"C:\dev\LimeBootstrap\system\docs\manual";
+            string port = args.Length > 1 ? args[1] : @"5000";
 
-                var response = client.GetAsync(baseAddress + "api/values").Result;
+            string baseAddress = "http://localhost:"+port;
+            Builder.sourcePath = sourcePath;
 
-                Console.WriteLine(response);
-                Console.WriteLine(response.Content.ReadAsStringAsync().Result);
-            }
+            Console.WriteLine("Server started");
+            Console.WriteLine("Listning on: " + port);
+            Console.WriteLine("Path: " + sourcePath);
+            var disposable = WebApp.Start<Startup>(url: baseAddress);
 
             Console.ReadLine();
+
+            disposable.Dispose();
         } 
     }
 }
