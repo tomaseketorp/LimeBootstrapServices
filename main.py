@@ -77,15 +77,13 @@ def getApp(app = ""):
 
 @lappStore.route('/api/apps/<app>/download/', method='GET')
 def getApp(app = ""):
+    response.set_header('Content-Disposition: attachment; filename', app + ".zip")
     path = ghZip.getAppZipFile(app)
-    print(path)
-    return static_file(path, root='./web')
+    return static_file(path, root='./web', download=app +".zip")
 
 @lappStore.route('/api/manual/', method='GET')
 def getManualData():
     return ghConCore.getManualData()
-
-
 
 lappStore.install(EnableCors())
 lappStore.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
