@@ -7,38 +7,15 @@
     <link href="css/lbsmanual.css" rel="stylesheet">
     <link href="css/animate.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
-    
-
-  </head>
-  <body>
-      <header>
-      <nav class="navbar navbar-inverse navbar-fixed-top " role="navigation">
-        <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-home"></span> LIME Bootstrap</a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        </div>
-      </nav>
-
-        <div class="jumbotron">
-        <div class="container">
-          <h1>Appstore</h1>
-        </div>
-      </div>
-    </header>
-
-  <div class="container">
-    <!-- ko foreach: { data: data, as: 'approw' } -->
+  <script type="text/html" id="apps-template">
+    <!-- ko foreach: { data: data.apps, as: 'approw' } -->
     <div class="row">
       <!-- ko foreach:{ data:approw, as: 'app'} -->
       <!-- ko if: app.name -->
       <!-- An app placeholder -->
       <div class="col-md-4">
         <!-- Mini app view -->
-        <div class="app"  data-bind="attr:{'data-target':'#expanded-' + app.name()}, click:app.expandApp, css:{'animated fadeOut':app.expandedApp()}">
+        <div class="app"  data-bind=" click:app.expandApp, css:{'animated fadeOut':app.expandedApp()}">
           <!-- App images-->
           <div class="carousel slide" data-ride="carousel" data-bind="attr:{id:'carousel-' + app.name()}">
               <!-- Wrapper for slides -->
@@ -98,14 +75,42 @@
 
     </div>
     <!-- /ko -->
-  
+  </script>
+
+
+  </head>
+  <body>
+      <header>
+      <nav class="navbar navbar-inverse navbar-fixed-top " role="navigation">
+        <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-home"></span> LIME Bootstrap</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        </div>
+      </nav>
+
+        <div class="jumbotron">
+        <div class="container">
+          <h1>Appstore</h1>
+        </div>
+      </div>
+    </header>
+
+    
+  <div class="container" data-bind="template: { name: 'apps-template', afterRender: PostProcessingLogic}">
+    <div class="row" id="loader">
+      <div class ="col-md-3 col-md-offset-5">
+        <img src="img/ajax-loader.gif" />
+      </div>
   </div>
     <script type="text/javascript" src="https://code.jquery.com/jquery.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/knockout-3.0.0.js"></script>
     <script type="text/javascript" src="js/knockout.mapping-latest.js"></script>
     <script type="text/javascript" src="js/lbsmanual.js"></script>
-    <script type="text/javascript" src="js/markdown.min.js"></script>
     <script type="text/javascript" src="js/marked.js"></script>
 
     

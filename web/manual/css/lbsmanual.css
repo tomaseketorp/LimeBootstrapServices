@@ -66,3 +66,12 @@ a {
 	background-color: transparent;
 	border-right: 1px solid #563d7c;
 }
+
+#loader{
+	padding-top:50px;
+}
+#loader img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

@@ -70,3 +70,12 @@ color:#FFF;
 code{
 	white-space: inherit;
 }
+
+#loader{
+	padding-top:50px;
+}
+#loader img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

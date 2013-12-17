@@ -4,6 +4,7 @@ var lbsappstore = {
 			var vm = new viewModel(data);
 			console.log(ko.mapping.toJS(vm));
 			ko.applyBindings(vm);
+
 		});
 	}
 };
@@ -13,11 +14,19 @@ ViewModel
 */
 var viewModel = function(rawData){
 	var self = this;
+	
 	$(rawData.apps).each(function(index,app){
 	
 		if(app.name){
 			app.readme = marked(app.readme);
-			app.expandedApp= ko.observable(false);
+			// App show be shown from start
+			if (location.hash == "#" + app.name){
+				app.expandedApp= ko.observable(true);
+				rawData.expandedApp = app.name
+			} else{
+				app.expandedApp= ko.observable(false);
+			}
+			
 			app.expandApp = function(app){
 				app.expandedApp(true);
 				location.hash = app.name()
@@ -46,12 +55,12 @@ var viewModel = function(rawData){
 		}		
 		
 	});
+	PostProcessingLogic = function(elements){
+		$(elements).find("#expanded-"+rawData.expandedApp).modal('show');
+	}
 
 
-
-	rawData =	listToMatrix(rawData.apps, 3);
-
-	console.log(rawData);
+	rawData.apps =	listToMatrix(rawData.apps, 3);
 	self.data = ko.mapping.fromJS(rawData);
 }
 
@@ -74,6 +83,11 @@ $(function(){
 	$(document).ready(function(){
 		lbsappstore.init();
 
+		if ($(location.hash).length > 0){
+				alert("hepp")
+				$("#expanded-checklist").modal('show');
+
+			}	
 	})
 	
 });
