@@ -78,7 +78,6 @@ def getApp(app = ""):
 
 @lappStore.route('/api/apps/<app>/download/', method='GET')
 def getApp(app = ""):
-    response.set_header('Content-Disposition: attachment; filename', app + ".zip")
     path = ghZip.getAppZipFile(app)
     return static_file(path, root='./web', download=app +".zip")
 
