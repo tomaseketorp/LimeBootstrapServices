@@ -1,5 +1,6 @@
 import bottle
 from bottle import response
+from bottle import redirect
 from bottle import static_file
 import browseGitHub
 import getZipFromGitHub  
@@ -45,11 +46,11 @@ def send_static():
 
 @lappStore.route('/appstore/')
 def send_static():
-    return static_file('appstore/index.html', root='./web')
+    return redirect('/web/appstore/index.html')
 
 @lappStore.route('/manual/')
 def send_static():
-    return static_file('manual/index.html', root='./web')
+    return redirect('/web/manual/index.html')
 
 @lappStore.route('/web/<filename:path>')
 def send_static(filename):
