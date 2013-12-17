@@ -33,7 +33,6 @@ var viewModel = function(rawData){
 				$("#expanded-"+app.name()).modal('show');
 			}
 			app.closeApp = function(app){
-				console.log(event.currentTarget.id)
 				app.expandedApp(false);
 				location.hash = '';
 				$("#expanded-"+app.name()).modal('hide');
