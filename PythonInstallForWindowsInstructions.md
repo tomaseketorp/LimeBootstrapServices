@@ -38,7 +38,7 @@ Ruby that is included in heroku does not work in some cases
 
 `gem install foreman -v 0.61`
 
-#Install virtual invoroment
+#Install virtual environment
 
 `pip install virtualenv`
 
