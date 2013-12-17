@@ -47,16 +47,11 @@
                 <div class="item" data-bind="style:{background:'#F1F6FF url(' + $data +') no-repeat center'}, css:{active: $index() == 0}" ></div>
                 <!-- /ko -->
               </div>
-              <!-- Indicators -->
-              <ol class="carousel-indicators">
-                <!-- ko foreach: app.images -->
-                <li data-bind="css:{active: $index() == 0}, attr:{'data-slide-to':$index(), 'data-taget':'#carousel-' + app.name()}"> </li>
-                <!-- /ko -->
-              </ol>
+              
             </div>
           <h3 data-bind="text: app.name"></h3>
           <!-- ko if: app.info -->
-          <span class="label label-default" data-bind="text:app.info.status()"></span>
+          <span class="label" data-bind="text:app.info.status(), css: app.statusColor"></span>
           <!-- /ko -->
         </div>
         <!--/ Mini app view -->
@@ -87,12 +82,6 @@
                           <div class="item" data-bind="style:{background:'#F1F6FF url(' + $data +') no-repeat center'}, css:{active: $index() == 0}" ></div>
                           <!-- /ko -->
                         </div>
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators">
-                          <!-- ko foreach: app.images -->
-                          <li class="apa" data-bind="css:{active: $index() == 0}, attr:{'data-slide-to':$index(), 'data-taget':'#carousel-large' + app.name()}"> </li>
-                          <!-- /ko -->
-                        </ol>
                       </div>
                         
                       <div data-bind="html:app.readme"></div>
@@ -117,6 +106,7 @@
     <script type="text/javascript" src="js/knockout.mapping-latest.js"></script>
     <script type="text/javascript" src="js/lbsmanual.js"></script>
     <script type="text/javascript" src="js/markdown.min.js"></script>
+    <script type="text/javascript" src="js/marked.js"></script>
 
     
   </body>

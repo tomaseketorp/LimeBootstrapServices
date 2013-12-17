@@ -16,7 +16,7 @@ var viewModel = function(rawData){
 	$(rawData.apps).each(function(index,app){
 	
 		if(app.name){
-			app.readme = markdown.toHTML(app.readme);
+			app.readme = marked(app.readme);
 			app.expandedApp= ko.observable(false);
 			app.expandApp = function(app){
 				app.expandedApp(true);
@@ -32,6 +32,17 @@ var viewModel = function(rawData){
 			app.download = function(){
 				location.href= '/api/apps/' + app.name + '/download/'
 			}
+			
+			if(app.info){
+				if(app.info.status === 'Release'){
+					app.statusColor = "label-success"
+				}else if(app.info.status === 'Beta'){
+					app.statusColor = "label-warning"
+				}else if(app.info.status === 'Development'){
+					app.statusColor = "label-danger"
+				}
+			}
+				
 		}		
 		
 	});

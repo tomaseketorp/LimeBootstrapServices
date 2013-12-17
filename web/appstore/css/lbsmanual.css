@@ -1,5 +1,5 @@
 body{
-background-color: #f8f8f8;
+background-color: #e2e2e2;
 font-family: 'Roboto', sans-serif ;
 }
 
@@ -22,11 +22,13 @@ color:#FFF;
 }
 
 .app{
-	box-shadow: 0px 0px 2px #DBDBDB;
+	box-shadow: 0px 0px 12px #B9B8B8;
 	background-color: #FFF;
 	height: 200px;
 	margin: 10px;
+	padding: 10px;
 	cursor: pointer;
+	border-radius: 2px;
 }
 
 .app .carousel .item{
@@ -63,4 +65,8 @@ color:#FFF;
 .modal .download{
 
 	margin-right: 30px;
+}
+
+code{
+	white-space: inherit;
 }
