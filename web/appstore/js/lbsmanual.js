@@ -17,26 +17,29 @@ var viewModel = function(rawData){
 	
 		if(app.name){
 			app.readme = markdown.toHTML(app.readme);
-			app.appToggled= ko.observable(false);
-			app.toggleApp = function(app){
-					if(!app.appToggled()){
-						app.appToggled(true);
-					}else{
-						app.appToggled(false);
-					}
+			app.expandedApp= ko.observable(false);
+			app.expandApp = function(app){
+				app.expandedApp(true);
+				location.hash = app.name()
+				$("#expanded-"+app.name()).modal('show');
 			}
-						app.dummy = function(app){
-
+			app.closeApp = function(app){
+				console.log(event.currentTarget.id)
+				app.expandedApp(false);
+				location.hash = '';
+				$("#expanded-"+app.name()).modal('hide');
+			}
+			app.download = function(){
+				location.href= '/api/apps/' + app.name + '/download/'
 			}
 		}		
-	
-
-
+		
 	});
 
 
 
 	rawData =	listToMatrix(rawData.apps, 3);
+
 	console.log(rawData);
 	self.data = ko.mapping.fromJS(rawData);
 }
@@ -57,7 +60,11 @@ function listToMatrix(list, elementsPerSubArray) {
 Lets get this party on the road
 */
 $(function(){
-	lbsappstore.init();
+	$(document).ready(function(){
+		lbsappstore.init();
+
+	})
+	
 });
 
 
