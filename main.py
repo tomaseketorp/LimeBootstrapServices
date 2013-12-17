@@ -28,12 +28,12 @@ ghZip = getZipFromGitHub.getZipFromGitHub("https://github.com/Lundalogik/LimeBoo
 print("Starting LappStore!")
 ghCon = browseGitHub.GitHubConnectorAppStore()
 print("Loading data from GitHub AppStore...")
-#ghCon.getAppsJSON()
+ghCon.getAppsJSON()
 
 print("Starting Core!")
 ghConCore = browseGitHub.GitHubConnectorCore()
 print("Loading data from GitHub Core...")
-#ghConCore.getManualData()
+ghConCore.getManualData()
 
 print("Server is ready!")
 
