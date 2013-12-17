@@ -51,7 +51,7 @@
               <!-- Indicators -->
               <ol class="carousel-indicators">
                 <!-- ko foreach: app.images -->
-                <li class="active" data-bind="css:{active: $index() == 0}, attr:{'data-slide-to':$index(), 'data-taget':'#carousel-' + app.name()}"> </li>
+                <li data-bind="css:{active: $index() == 0}, attr:{'data-slide-to':$index(), 'data-taget':'#carousel-' + app.name()}"> </li>
                 <!-- /ko -->
               </ol>
             </div>
@@ -83,7 +83,7 @@
                         <!-- Indicators -->
                         <ol class="carousel-indicators">
                           <!-- ko foreach: app.images -->
-                          <li class="active" data-bind="css:{active: $index() == 0}, attr:{'data-slide-to':$index(), 'data-taget':'#carousel-large' + app.name()}"> </li>
+                          <li class="apa" data-bind="css:{active: $index() == 0}, attr:{'data-slide-to':$index(), 'data-taget':'#carousel-large' + app.name()}"> </li>
                           <!-- /ko -->
                         </ol>
                       </div>
