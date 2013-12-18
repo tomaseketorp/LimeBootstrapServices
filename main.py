@@ -85,5 +85,10 @@ def getApp(app = ""):
 def getManualData():
     return ghConCore.getManualData()
 
+@lappStore.route('/api/version/', method='GET')
+def getVersionData():
+    ghConVersion = browseGitHub.GitHubConnectorVersion()
+    return ghConVersion.getFrameworkVersion()
+
 lappStore.install(EnableCors())
 lappStore.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
