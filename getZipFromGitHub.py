@@ -34,7 +34,8 @@ class getZipFromGitHub:
                         zf2.close()
                     #File in root-dir
                     else:
-                        zf2.writestr(fileName, zfile.read(name), zipfile.ZIP_DEFLATED )
-                        zf2.close()
+                        if not fileName.startswith("_"):
+                            zf2.writestr(fileName, zfile.read(name), zipfile.ZIP_DEFLATED )
+                            zf2.close()
         zfile.close();
         return "/temp/" + appToGet + ".zip"

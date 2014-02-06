@@ -40,6 +40,10 @@ var viewModel = function(rawData){
 			app.download = function(){
 				location.href= '/api/apps/' + app.name + '/download/'
 			}
+
+			app.githubAddress = function(){
+				location.href= 'https://github.com/Lundalogik/LimeBootstrapAppStore/tree/master/' + app.name 
+			}
 			
 			if(app.info){
 				if(app.info.status === 'Release'){
