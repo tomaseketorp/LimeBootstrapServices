@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/lbsmanual.css" rel="stylesheet">
+    <link href="css/monokai_sublime.css" rel="stylesheet">
 
   </head>
   <body>
@@ -23,6 +24,10 @@
             <li class="">
               <a href="#" data-bind="text:humanName, click:$root.selectChapter, attr: { href: uri }"></a>
               </li>
+          </ul>
+            <ul class="nav navbar-nav navbar-right">
+            <li><a href="/manual/">Manual</a></li>
+            <li><a href="/appstore/">Appstore</a></li>
           </ul>
         </div>
         </div>
@@ -61,14 +66,16 @@
       </div>
     </footer>
 
-
     <script type="text/javascript" src="https://code.jquery.com/jquery.js"></script>
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/knockout-3.0.0.js"></script>
     <script type="text/javascript" src="js/knockout.mapping-latest.js"></script>
+    <script type="text/javascript" src="js/highlight.pack.js"></script>
     <script type="text/javascript" src="js/lbsmanual.js"></script>
     <script type="text/javascript" src="js/marked.js"></script>
     <script type="text/javascript" src="js/base64.js"></script>
+
+
     
   </body>
 </html>

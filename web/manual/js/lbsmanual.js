@@ -233,6 +233,7 @@ var viewModel = function(rawData){
     	self.chapter(item);
     	self.generateSidebar();
     	self.scrollspy.refresh();
+    	$('pre code').each(function(i, e) {hljs.highlightBlock(e)});
     	console.log(item.uri())
     	window.history.pushState({},"", item.uri());
     }
@@ -245,4 +246,5 @@ Lets get this party on the road
 */
 $(function(){
 	lbsmanual.init();
+	
 });

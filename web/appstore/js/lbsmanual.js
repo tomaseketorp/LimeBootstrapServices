@@ -4,7 +4,7 @@ var lbsappstore = {
 			var vm = new viewModel(data);
 			console.log(ko.mapping.toJS(vm));
 			ko.applyBindings(vm);
-
+			$('pre code').each(function(i, e) {hljs.highlightBlock(e)});
 		});
 	}
 };
