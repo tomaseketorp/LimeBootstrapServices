@@ -91,4 +91,4 @@ def getVersionData():
     return ghConVersion.getFrameworkVersion()
 
 lappStore.install(EnableCors())
-lappStore.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+lappStore.run(host="0.0.0.0", server='gunicorn', port=int(os.environ.get("PORT", 5000)))
