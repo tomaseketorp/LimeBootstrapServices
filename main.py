@@ -66,15 +66,14 @@ def refreshApps():
     ghCon.getAppsJSON(True)
     return {"status":"refresh successfull!"}
 
-@lappStore.route('/api/apps/<app>/' , method='GET')
-def getApp(app = ""):
+@lappStore.route('/api/apps/<appname>/' , method='GET')
+def getApp(appname = ""):
     apps = ghCon.getAppsJSON()
-    print(app)
-    print(apps['apps'])
-    if app in apps['apps']:
-        return apps['apps'][app]
-    else:
-        return {'error':'App does not exists'}
+    for index, app in enumerate(apps['apps']):
+        if app['name'] == appname:
+            return app
+
+    return {'error':'app not found'}
 
 @lappStore.route('/api/apps/<app>/download/', method='GET')
 def getApp(app = ""):
