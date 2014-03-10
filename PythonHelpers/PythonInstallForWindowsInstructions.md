@@ -1,7 +1,7 @@
 
 
-#Install python33
-
+#Install python3
+#Install python2
 `www.python.com`
 
 #Install python tools
@@ -42,5 +42,31 @@ Ruby that is included in heroku does not work in some cases
 
 `pip install virtualenv`
 
+`pip install virtualenvwrapper-win`
+
+#Change powershell executionpolicy
+`Set-ExecutionPolicy Unrestricted`
+
 #Create virtual environment
-`virtualenv myNewEnvirnonmentname`
+//`virtualenv myNewEnvirnonmentname`
+mkvirtualenv <name>
+
+#Activate virtual environment
+`workon [<name>]`
+
+#set project dir
+setprojectdir <full or relative path>
+
+#deactive cirtual environment
+deactivate
+
+#Install mkdocs
+`pip install mkdocs`
+
+https://pypi.python.org/pypi/virtualenvwrapper-win
+
+
+https://bitbucket.org/vinay.sajip/pylauncher/
+
+py -3
+py -2

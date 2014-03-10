@@ -1,0 +1,2 @@
+mkdocs>=0.5
+honcho>=0.5
