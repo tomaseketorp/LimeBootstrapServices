@@ -1,41 +1,26 @@
-# Dixerat te aratri quoque captare velamina
+#LIME Bootstrap
+The LIME Bootstrap is made to make it easier, better and faster working with Actionpads in LIME pro. The framework relies heavily on Knockout.js and Twitter Bootstrap but with custom styling and a simple, yet powerful script called `lbs.js`. The framework contains several built in functions and third 
+party libraries, but is also expandable through custom apps. 
 
-## Dare circum defessa loquendi leaenae perfundit vinaque
 
-Lorem markdownum facinusque faciem, in in quis *fixa pressus* dicite internodia
-venturorumque vicisti torvo ministrarum ambit? Vox Calliroe sequar busta,
-priorum, et simulati, tuli iter et simul. Una suas fabrilis quia illius, nocte
-pede veni quam talia.
+LIME-bootstrap is only meant to be used inside LIME Pro, but for debugging reasons all functionality (except the data connections) should work in any browser.
 
-> Alcithoe nudo **et** trium promere lumina gnatae acta, testatus forma ferrum;
-> sed rege fidissime lutea, gemitum. Bos **dextra limite principio** ut certans
-> mentem, atque dixerunt nam. Poemenis rebellant draconi conata *quaesitus
-> amittere* miracula erit de gente in referam rogando esset!
+##Requirements
 
-**Ammon dissuaserat** sumere denos [dulcedine](http://www.raynelongboards.com/)
-feras. Nec dextro esse, corpore iubet.
+*	Internet Explorer 9 <- With some design quirks
+*	Internet Explorer 10
+*	Internet Explorer 11
 
-## Profusis est sine
+Older versions of IE __won't__ work!
 
-Alite colentes fatemur sacrata torrentur fine admonitorque omnia, tendebat
-*tantum lacriment* dicitur triumphos cunctosque pollice posset Petraeum ab.
-Dolor quid timore tamen? An tabe. Prole erat ieiunia Saturnia omnemque, illa ubi
-pascua vestris [accepta corripiens](http://www.thesecretofinvisibility.com/)
-alios, et, nactus, ingeniumque gestu.
+*	LIME 10.11 or greater
 
-1. Differt et et servat clamore aethere memor
-2. Percutiens ferro alterius et sensit vertice poposcit
-3. Visa alto
-4. Ad supposita cura fores
-5. Arboreae sororem mirumque litora si domo quies
 
-Membra quae *fecit* saltus exspectatoque viribus submersum de tibi; ungues. Et
-fata populos neque solum, imo abstinet, medios: est pars Tyndaridae tenuere
-Iliaden.
+##Install
+LIME Bootstrap is included in the LIME Basic database and nothing is needs to be done in this case. If installing LIME Bootstrap from scratch:
 
-Crepitantibus ille ubique titulum, non sinistrae sparsus terras iugulumque rugae
-adsternunturque antris veste ferunt senilem, lingua. Ostendisse certius tegi sui
-nux qua pelle est; in ruitque.
+1.	Copy all the folders, `lbs.html` and `_config.js` to the Actionpad-folder
+2.	Create two new VBA modules from the VBA found in `system/vba/` with the same name as the files
+3.	Change the URL of all Actionpads in LIME Pro to `lbs.html`
 
-[accepta corripiens]: http://www.thesecretofinvisibility.com/
-[dulcedine]: http://www.raynelongboards.com/
+If you'll like the some basic views to start with you can find some [here](https://github.com/Lundalogik/LimeBootstrapBaseActionpads)

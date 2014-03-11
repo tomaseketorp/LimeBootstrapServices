@@ -1,12 +1,17 @@
-site_name: AName
+site_name: LimeBootstrap
 pages:
-- [index.md, Home]
-- [about.md, About,'Collection']
-- [test1.md, Test]
-theme: mkdocs
-repo_url: https://github.com/example/repository/
-site_description: 
-site_author: 
+- [index.md, 'About']
+- [philosophy.md, 'Philosophy']
+- [basicUsage.md, 'BasicUsage']
+- [advanced.md, 'Advanced']
+- [buildingApps.md, 'BuildingApps']
+- [changelog.md, 'Changelog']
+- [technicalPlatform.md, 'TechnicalPlatform']
+- [python.md, 'Python - Installation and configuration']
+theme: readthedocs
+repo_url: https://github.com/Lundalogik/LimeBootstrapServices
+site_description: LimeBootstrap dokumentation
+site_author: Lundalogik AB
 site_favicon: 
 docs_dir: docs
 site_dir: site
