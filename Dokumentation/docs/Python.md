@@ -42,6 +42,13 @@ To set environment variables such as github credentials. Create a file named
 `.env` in the prject root and list key-value pairs as
 `KEY=VAL`
 
+Also add key "PYTHONUNBUFFERED=true" for immeiate console output
+
+####Example
+PYTHONUNBUFFERED=true
+GITHUB_USER=xxx
+GITHUB_PASSWORD=yyy
+
 ## Starting webproject for services
 `honcho start`
 

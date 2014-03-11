@@ -88,6 +88,10 @@
                 
                     <li><a class="toctree-l3" href="#woring-with-virtual-environment">Woring with virtual environment</a></li>
                 
+                    <li><a class="toctree-l3" href="#setup-environment-variables">Setup environment variables</a></li>
+                
+                    <li><a class="toctree-l3" href="#starting-webproject-for-services">Starting webproject for services</a></li>
+                
                     <li><a class="toctree-l3" href="#change-forman-version-optional">Change forman version (optional)</a></li>
                 
                     <li><a class="toctree-l3" href="#install-heroku-optional">Install heroku (optional)</a></li>
@@ -161,6 +165,17 @@ The script collection is refered to as <strong>$pyh</strong>.</p>
 <p><code>deactivate</code></p>
 <h3 id="install-dependecies">Install dependecies</h3>
 <p><code>pip install -r requirements.txt</code></p>
+<h2 id="setup-environment-variables">Setup environment variables</h2>
+<p>To set environment variables such as github credentials. Create a file named
+<code>.env</code> in the prject root and list key-value pairs as
+<code>KEY=VAL</code></p>
+<p>Also add key "PYTHONUNBUFFERED=true" for immeiate console output</p>
+<h4 id="example">Example</h4>
+<p>PYTHONUNBUFFERED=true
+GITHUB_USER=xxx
+GITHUB_PASSWORD=yyy</p>
+<h2 id="starting-webproject-for-services">Starting webproject for services</h2>
+<p><code>honcho start</code></p>
 <h2 id="change-forman-version-optional">Change forman version (optional)</h2>
 <p>If using foreman yo will have to us v.0.61. It is hpwever recomended to use <strong>honcho</strong> instead.</p>
 <p>"gem install foreman" installed v0.63, which does not work for "foreman start"</p>
