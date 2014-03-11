@@ -15,6 +15,9 @@ Older versions of IE __won't__ work!
 
 *	LIME 10.11 or greater
 
+note
+On Lime 10.10 the data from activeinspector can not be trusted and there are some quirks when publishing actionpads.
+
 
 ##Install
 LIME Bootstrap is included in the LIME Basic database and nothing is needs to be done in this case. If installing LIME Bootstrap from scratch:
