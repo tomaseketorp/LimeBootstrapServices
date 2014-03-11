@@ -8,9 +8,20 @@ Just replace the `system`-folder and `lbs.html` and you are good to go, unless s
 
 
 #Changelog
+###1.1
+*	Bugfix: Handeling of `_config.js` now works in IE9 
+*	Bugfix: Index-view won't cause an ugly error any more
+*	Bugfix: Checking for updates should work better
+
+###1.0
+*	The big 1.0 release! *untz* *untz* *untz*
+*	__NOTE:__ Format of `_config.js` has changed and the file must be replaced! If you are upgrading and you have modified the file, look at the new format and apply your changed accordingly. Should be a 10 second fix.
+*	Apps now auto-magically check their versions compared to the latest version available on the appstore. If a newer (and always better) version has been released you can directly downloaded and install it with three clicks and one copy-paste. 
+*	New dataSources are available. Most exciting is 'AsyncPost' which combined with a [proxy server](https://github.com/FredrikL/Lime.Proxy) for LIME WebService can fetch data without LIME freezing. Great job [FredrikL!](https://github.com/FredrikL)
+
 ###0.9
 *	Now in Twitter Bootstrap 3.1. 
-*	Handeling of inline and tab views have been improved
+*	Handling of inline and tab views have been improved
 
 ###0.8
 Bugs have been eaten!
