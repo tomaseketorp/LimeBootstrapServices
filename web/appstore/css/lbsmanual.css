@@ -1,5 +1,5 @@
 body{
-background-color: #f8f8f8;
+background-color: #f2f2f2;
 font-family: 'Roboto', sans-serif ;
 }
 
@@ -9,24 +9,51 @@ font-weight: 100;
 	}
 
 .jumbotron{
-background: #b55f90; /* Old browsers */
-background: -moz-linear-gradient(-45deg, #b55f90 0%, #c47577 45%, #341a4a 100%); /* FF3.6+ */
-background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#b55f90), color-stop(45%,#c47577), color-stop(100%,#341a4a)); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(-45deg, #b55f90 0%,#c47577 45%,#341a4a 100%); /* Chrome10+,Safari5.1+ */
-background: -o-linear-gradient(-45deg, #b55f90 0%,#c47577 45%,#341a4a 100%); /* Opera 11.10+ */
-background: -ms-linear-gradient(-45deg, #b55f90 0%,#c47577 45%,#341a4a 100%); /* IE10+ */
-background: linear-gradient(135deg, #b55f90 0%,#c47577 45%,#341a4a 100%); /* W3C */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b55f90', endColorstr='#341a4a',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+	background-color: #3498db;
+	border-color: transparent;
 color:#FFF;
 
 }
 
+.navbar-default {
+	background-color: #3498db;
+	border-color: transparent;
+}
+
+.navbar-default .navbar-brand {
+	color: white;
+}
+
+.navbar-default .navbar-nav > li > a {
+	color: white;
+}
+
 .app{
-	box-shadow: 0px 0px 2px #DBDBDB;
+	
 	background-color: #FFF;
 	height: 200px;
 	margin: 10px;
+	padding: 10px;
 	cursor: pointer;
+
+
+	border-bottom-color: rgba(0, 0, 0, 0);
+border-bottom-left-radius: 1px;
+border-bottom-right-radius: 1px;
+border-bottom-style: solid;
+border-bottom-width: 1px;
+border-left-color: rgba(0, 0, 0, 0);
+border-left-style: solid;
+border-left-width: 1px;
+border-right-color: rgba(0, 0, 0, 0);
+border-right-style: solid;
+border-right-width: 1px;
+border-top-color: rgba(0, 0, 0, 0);
+border-top-left-radius: 1px;
+border-top-right-radius: 1px;
+border-top-style: solid;
+border-top-width: 1px;
+box-shadow: rgba(0, 0, 0, 0.0784314) 0px 2px 1px 0px;
 }
 
 .app .carousel .item{
@@ -63,4 +90,17 @@ color:#FFF;
 .modal .download{
 
 	margin-right: 30px;
+}
+
+code{
+	white-space: inherit;
+}
+
+#loader{
+	padding-top:50px;
+}
+#loader img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }

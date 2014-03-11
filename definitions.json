@@ -1,0 +1,11 @@
+{
+  actions:[
+      {binding:"icon",input:["text", "icon"], description:"Adds and icon to the text"},
+      {binding:"call",input:["text", "field"], description:"Calls the number,"}  
+  ],
+  components:[
+    {name:"Menu",properties:{ foo: { }, bar: { } }, description:"menu is nice", html:"<ul class='properties' data-bind='actions'></ul>"}
+  
+  ]
+
+}

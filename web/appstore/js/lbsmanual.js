@@ -4,6 +4,7 @@ var lbsappstore = {
 			var vm = new viewModel(data);
 			console.log(ko.mapping.toJS(vm));
 			ko.applyBindings(vm);
+			$('pre code').each(function(i, e) {hljs.highlightBlock(e)});
 		});
 	}
 };
@@ -13,18 +14,25 @@ ViewModel
 */
 var viewModel = function(rawData){
 	var self = this;
+	
 	$(rawData.apps).each(function(index,app){
 	
 		if(app.name){
-			app.readme = markdown.toHTML(app.readme);
-			app.expandedApp= ko.observable(false);
+			app.readme = marked(app.readme);
+			// App show be shown from start
+			if (location.hash == "#" + app.name){
+				app.expandedApp= ko.observable(true);
+				rawData.expandedApp = app.name
+			} else{
+				app.expandedApp= ko.observable(false);
+			}
+			
 			app.expandApp = function(app){
 				app.expandedApp(true);
 				location.hash = app.name()
 				$("#expanded-"+app.name()).modal('show');
 			}
 			app.closeApp = function(app){
-				console.log(event.currentTarget.id)
 				app.expandedApp(false);
 				location.hash = '';
 				$("#expanded-"+app.name()).modal('hide');
@@ -32,15 +40,30 @@ var viewModel = function(rawData){
 			app.download = function(){
 				location.href= '/api/apps/' + app.name + '/download/'
 			}
+
+			app.githubAddress = function(){
+				location.href= 'https://github.com/Lundalogik/LimeBootstrapAppStore/tree/master/' + app.name 
+			}
+			
+			if(app.info){
+				if(app.info.status === 'Release'){
+					app.statusColor = "label-success"
+				}else if(app.info.status === 'Beta'){
+					app.statusColor = "label-warning"
+				}else if(app.info.status === 'Development'){
+					app.statusColor = "label-danger"
+				}
+			}
+				
 		}		
 		
 	});
+	PostProcessingLogic = function(elements){
+		$(elements).find("#expanded-"+rawData.expandedApp).modal('show');
+	}
 
 
-
-	rawData =	listToMatrix(rawData.apps, 3);
-
-	console.log(rawData);
+	rawData.apps =	listToMatrix(rawData.apps, 3);
 	self.data = ko.mapping.fromJS(rawData);
 }
 
@@ -63,6 +86,11 @@ $(function(){
 	$(document).ready(function(){
 		lbsappstore.init();
 
+		if ($(location.hash).length > 0){
+				alert("hepp")
+				$("#expanded-checklist").modal('show');
+
+			}	
 	})
 	
 });

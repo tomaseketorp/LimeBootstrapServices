@@ -1,5 +1,6 @@
 import bottle
 from bottle import response
+from bottle import redirect
 from bottle import static_file
 import browseGitHub
 import getZipFromGitHub  
@@ -45,11 +46,11 @@ def send_static():
 
 @lappStore.route('/appstore/')
 def send_static():
-    return static_file('appstore/index.html', root='./web')
+    return redirect('/web/appstore/index.html')
 
 @lappStore.route('/manual/')
 def send_static():
-    return static_file('manual/index.html', root='./web')
+    return redirect('/web/manual/index.html')
 
 @lappStore.route('/web/<filename:path>')
 def send_static(filename):
@@ -65,27 +66,30 @@ def refreshApps():
     ghCon.getAppsJSON(True)
     return {"status":"refresh successfull!"}
 
-@lappStore.route('/api/apps/<app>/' , method='GET')
-def getApp(app = ""):
+@lappStore.route('/api/apps/<appname>/' , method='GET')
+def getApp(appname = ""):
     apps = ghCon.getAppsJSON()
-    print(app)
-    print(apps['apps'])
-    if app in apps['apps']:
-        return apps['apps'][app]
-    else:
-        return {'error':'App does not exists'}
+    for index, app in enumerate(apps['apps']):
+        try:
+            if app['name'] == appname:
+                return app
+        except KeyError:
+            print('No name for app')
+    return {"error":"app not found"}
 
 @lappStore.route('/api/apps/<app>/download/', method='GET')
 def getApp(app = ""):
     path = ghZip.getAppZipFile(app)
-    print(path)
-    return static_file(path, root='./web')
+    return static_file(path, root='./web', download=app +".zip")
 
 @lappStore.route('/api/manual/', method='GET')
 def getManualData():
     return ghConCore.getManualData()
 
-
+@lappStore.route('/api/version/', method='GET')
+def getVersionData():
+    ghConVersion = browseGitHub.GitHubConnectorVersion()
+    return ghConVersion.getFrameworkVersion()
 
 lappStore.install(EnableCors())
-lappStore.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+lappStore.run(host="0.0.0.0", server='gunicorn', port=int(os.environ.get("PORT", 5000)))

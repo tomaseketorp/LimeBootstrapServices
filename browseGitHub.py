@@ -119,4 +119,13 @@ class GitHubConnectorCore:
             print("Serving cached data")
             return self.cached_return_json
 
+class GitHubConnectorVersion:
+    def __init__(self):
+        self.github_user = os.environ["GITHUB_USER"]
+        self.github_password = os.environ["GITHUB_PASSWORD"]
+        self.baseURL = "https://api.github.com/repos/Lundalogik/LimeBootstrap/contents/system/version.json?ref=master"
 
+    def getFrameworkVersion(self):
+        version = requests.get(self.baseURL, auth=(self.github_user, self.github_password), headers={"Accept": "application/vnd.github.VERSION.raw"})
+        print(version.text)
+        return json.loads(version.text)
