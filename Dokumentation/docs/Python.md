@@ -37,6 +37,14 @@ This will install an set everything up.
 ### Install dependecies
 `pip install -r requirements.txt`
 
+## Setup environment variables
+To set environment variables such as github credentials. Create a file named
+`.env` in the prject root and list key-value pairs as
+`KEY=VAL`
+
+## Starting webproject for services
+`honcho start`
+
 ##Change forman version (optional)
 
 If using foreman yo will have to us v.0.61. It is hpwever recomended to use __honcho__ instead.

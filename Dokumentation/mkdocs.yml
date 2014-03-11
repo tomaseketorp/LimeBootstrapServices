@@ -14,5 +14,5 @@ site_description: LimeBootstrap dokumentation
 site_author: Lundalogik AB
 site_favicon: 
 docs_dir: docs
-site_dir: site
+site_dir: ..\web\manual
 dev_addr: 127.0.0.1:8000
