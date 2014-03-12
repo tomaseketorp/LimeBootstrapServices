@@ -220,7 +220,7 @@ LIME Bootstraps allows you to load small components we call apps, as a complimen
 
 <p>Each app has it's own instructions how to start and install them. Some apps require VBA and/or stored procedures to be added.</p>
 <h2 id="bindings">Bindings</h2>
-<p>As we relay heavily on knockout their <code>data-bind:""</code> syntax is used through out the framework. The <code>data-bind:""</code> syntax is a used as a property on an html element. In a <code>data-bind</code> you add <code>bindings</code>, actions or triggers, to perform actions. All Knockout bindings are available, but also a few custom bindings to make your life easier. 
+<p>As we relay heavily on knockout their <code>data-bind=""</code> syntax is used through out the framework. The <code>data-bind=""</code> syntax is a used as a property on an html element. In a <code>data-bind</code> you add <code>bindings</code>, actions or triggers, to perform actions. All Knockout bindings are available, but also a few custom bindings to make your life easier. 
 Read more about bindings and Knockout <a href="http://knockoutjs.com/documentation/introduction.html">here</a> and try the tutorial <a href="http://learn.knockoutjs.com">here</a></p>
 <p>A basic example of use of a knockout binding:</p>
 <pre class="prettyprint well"><code class="html">&lt;li data-bind=&quot;text:company.name&quot;&gt;&lt;/li&gt; `
@@ -239,8 +239,12 @@ List of custom handlers:
 <pre class="prettyprint well"><code class="html">&lt;li data-bind=&quot;text:localize.ActionPad_Todo.addTodo&quot;&gt;&lt;/li&gt;
 </code></pre>
 
-<p>Technical note
-The translations are added to the global view model and thus available in your apps.</p>
+<p>The example below uses the versatile knockout binding <code>attr</code> to add a tooltip with localization support. It also uses the custom LIME Bootstrap bindings <code>vba</code> and <code>icon</code>.</p>
+<pre class="prettyprint well"><code class="html">&lt;li data-bind=&quot;vba:'Actionpad_Person.newComment', text:localize.Actionpad_Person.t_newcomment, icon:'fa-comment', attr: { title: localize.Actionpad_Person.tooltip_newcomment }&quot;&gt;&lt;/li&gt;
+</code></pre>
+
+<h5 id="technical-note">Technical note</h5>
+<p>The translations are added to the global view model and are thus available in your apps.</p>
 <h3 id="fetching-data-from-fields-in-lime-pro">Fetching data from fields in LIME Pro</h3>
 <p>All fields from the ActiveInspector are automagically available for you to use in your view. The syntax is <code>[Record class name].[field database name].[property]</code>.</p>
 <p>The available properties are (in order of relevance):
@@ -295,7 +299,7 @@ In complex cases the VBA-function can take input parameters to reduce the number
 <p>You can also use any available data in the actionpad as an input to the function through concatenating a string  </p>
 <p><code>html
 &lt;li data-bind="vba:'ActionPad_Helpdesk.DoSomethingWithTheRecord,' + helpdesk.idhelpdesk.value"&gt;&lt;/li&gt;</code></p>
-<h3 id="showing-a-adress-on-a-map">Showing a adress on a map</h3>
+<h3 id="showing-an-adress-on-a-map">Showing an adress on a map</h3>
 <ul>
 <li>
 <p><strong>showOnMap:</strong> - Searches Google Maps for the provided address.</p>
@@ -327,10 +331,10 @@ In complex cases the VBA-function can take input parameters to reduce the number
 &lt;li data-bind="text:todo.company.text, limeLink:todo.company, icon:'fa-flag'"&gt;&lt;/li&gt;</code></p>
 </li>
 </ul>
-<h3 id="send-a-email">Send a email</h3>
+<h3 id="send-an-email">Send an email</h3>
 <ul>
 <li>
-<p><strong>email</strong> - Creates an email. TODO: Should use LIMES built in email factory</p>
+<p><strong>email</strong> - Creates an email. TODO: Should use LIME's built in email factory.</p>
 <p><code>html
 &lt;li data-bind="text:person.email.text, email:person.email.text, icon:'fa-mail'"&gt;&lt;/li&gt;</code></p>
 </li>

@@ -81,6 +81,10 @@
             
                 <li class="toctree-l2"><a href="#changelog_1">Changelog</a></li>
                 
+                    <li><a class="toctree-l3" href="#11">1.1</a></li>
+                
+                    <li><a class="toctree-l3" href="#10">1.0</a></li>
+                
                     <li><a class="toctree-l3" href="#09">0.9</a></li>
                 
                     <li><a class="toctree-l3" href="#08">0.8</a></li>
@@ -151,10 +155,23 @@
 <h1 id="upgrade-instructions">Upgrade instructions</h1>
 <p>Just replace the <code>system</code>-folder and <code>lbs.html</code> and you are good to go, unless specified otherwise in the changelog</p>
 <h1 id="changelog_1">Changelog</h1>
+<h3 id="11">1.1</h3>
+<ul>
+<li>Bugfix: Handeling of <code>_config.js</code> now works in IE9 </li>
+<li>Bugfix: Index-view won't cause an ugly error any more</li>
+<li>Bugfix: Checking for updates should work better</li>
+</ul>
+<h3 id="10">1.0</h3>
+<ul>
+<li>The big 1.0 release! <em>untz</em> <em>untz</em> <em>untz</em></li>
+<li><strong>NOTE:</strong> Format of <code>_config.js</code> has changed and the file must be replaced! If you are upgrading and you have modified the file, look at the new format and apply your changed accordingly. Should be a 10 second fix.</li>
+<li>Apps now auto-magically check their versions compared to the latest version available on the appstore. If a newer (and always better) version has been released you can directly downloaded and install it with three clicks and one copy-paste. </li>
+<li>New dataSources are available. Most exciting is 'AsyncPost' which combined with a <a href="https://github.com/FredrikL/Lime.Proxy">proxy server</a> for LIME WebService can fetch data without LIME freezing. Great job <a href="https://github.com/FredrikL">FredrikL!</a></li>
+</ul>
 <h3 id="09">0.9</h3>
 <ul>
 <li>Now in Twitter Bootstrap 3.1. </li>
-<li>Handeling of inline and tab views have been improved</li>
+<li>Handling of inline and tab views have been improved</li>
 </ul>
 <h3 id="08">0.8</h3>
 <p>Bugs have been eaten!</p>
