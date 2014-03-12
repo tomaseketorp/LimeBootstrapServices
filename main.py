@@ -5,6 +5,7 @@ from bottle import static_file
 import browseGitHub
 import getZipFromGitHub  
 import os
+import sys
 
 
 class EnableCors(object):
@@ -26,15 +27,22 @@ class EnableCors(object):
 
 ghZip = getZipFromGitHub.getZipFromGitHub("https://github.com/Lundalogik/LimeBootstrapAppStore/archive/master.zip")
 
+print("Building manual...")
+#execfile("mkdocs build")
+os.chdir('dokumentation')
+os.system("python "+os.path.dirname(sys.executable)+"\mkdocs build")
+os.getcwd()      # Return the current working directory
+
+
 print("Starting LappStore!")
 ghCon = browseGitHub.GitHubConnectorAppStore()
 print("Loading data from GitHub AppStore...")
 ghCon.getAppsJSON()
 
-print("Starting Core!")
-ghConCore = browseGitHub.GitHubConnectorCore()
-print("Loading data from GitHub Core...")
-ghConCore.getManualData()
+#print("Starting Core!")
+#ghConCore = browseGitHub.GitHubConnectorCore()
+#print("Loading data from GitHub Core...")
+#ghConCore.getManualData()
 
 print("Server is ready!")
 
