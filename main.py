@@ -28,11 +28,10 @@ class EnableCors(object):
 ghZip = getZipFromGitHub.getZipFromGitHub("https://github.com/Lundalogik/LimeBootstrapAppStore/archive/master.zip")
 
 print("Building manual...")
-#execfile("mkdocs build")
-os.chdir('dokumentation')
-os.system("python "+os.path.dirname(sys.executable)+"\mkdocs build")
-os.getcwd()      # Return the current working directory
-
+work_dir = os.getcwd()
+os.chdir('Documentation')
+os.system("python "+os.path.join(os.path.dirname(sys.executable),"mkdocs")+" build")
+os.chdir(work_dir)
 
 print("Starting LappStore!")
 ghCon = browseGitHub.GitHubConnectorAppStore()
