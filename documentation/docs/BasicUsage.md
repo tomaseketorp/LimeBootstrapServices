@@ -262,21 +262,17 @@ Input parameters are provided by simply separating them by commas.
     ```
 
 ###Working with time and dates
-Dates are a hazel, except when you have the awesome library [Moment.js](http://momentjs.com).
+Dates are a hassle, except when you have the awesome library [Moment.js](http://momentjs.com).
 
 To create a iso-date:
 `moment()`
 
 To parse almost any date format:
-´moment([CRAZY DATE FORMAT])´
+`moment([CRAZY DATE FORMAT])`
 
 Moment even makes time and dates readable to people.
-´moment().timeAgo(2011-01-01)´ will give you, "A few years ago"
+`moment().timeAgo(2011-01-01)` will give you, "A few years ago"
 
 Moment is automagically setup to use the same language and date-format as the language of the LIME Client. 
 Remember to use it and check out it further!
-
-
-
-
 
