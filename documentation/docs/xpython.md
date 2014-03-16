@@ -93,6 +93,12 @@ Check the logs
 
 	heroku logs --app limebootstrapservices-dev
 
+Environments real addresses are located on the following urls, production is alias under _limebootstrap.lundalogik.se_.
+
+	http://limebootstrapservices.herokuapp.com/
+	http://limebootstrapservices-dev.herokuapp.com/
+
+
 ### Install ruby from standard source
 
 Ruby that is included in heroku does not work in some casess
