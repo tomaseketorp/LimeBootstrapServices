@@ -3,10 +3,11 @@ from bottle import response
 from bottle import redirect
 from bottle import static_file
 import browseGitHub
-import getZipFromGitHub  
+import getZipFromGitHub
+import documentation  
 import os
 import sys
-
+import os.path
 
 class EnableCors(object):
     name = 'enable_cors'
@@ -25,18 +26,16 @@ class EnableCors(object):
 
         return _enable_cors
 
-ghZip = getZipFromGitHub.getZipFromGitHub("https://github.com/Lundalogik/LimeBootstrapAppStore/archive/master.zip")
+#ghZip = getZipFromGitHub.getZipFromGitHub("https://github.com/Lundalogik/LimeBootstrapAppStore/archive/master.zip")
 
-print("Building manual...")
-work_dir = os.getcwd()
-os.chdir('documentation')
-os.system("python "+os.path.join(os.path.dirname(sys.executable),"mkdocs")+" build")
-os.chdir(work_dir)
+print("Creating DocumentationLoader")
+ghDoc = documentation.DocumentationLoader();
+ghDoc.verifyIntegrity();
 
 print("Starting LappStore!")
 ghCon = browseGitHub.GitHubConnectorAppStore()
 print("Loading data from GitHub AppStore...")
-ghCon.getAppsJSON()
+#ghCon.getAppsJSON()
 
 #print("Starting Core!")
 #ghConCore = browseGitHub.GitHubConnectorCore()
@@ -46,6 +45,10 @@ ghCon.getAppsJSON()
 print("Server is ready!")
 
 lappStore = bottle.app()
+
+@lappStore.hook('before_request')
+def checkDocumentationIntegrety():
+    ghDoc.verifyIntegrity();
 
 @lappStore.route('/')
 def send_static():
