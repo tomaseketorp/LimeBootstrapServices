@@ -45,9 +45,9 @@ To set environment variables such as github credentials. Create a file named
 Also add key "PYTHONUNBUFFERED=true" for immeiate console output
 
 ####Example
-PYTHONUNBUFFERED=true
-GITHUB_USER=xxx
-GITHUB_PASSWORD=yyy
+	PYTHONUNBUFFERED=true
+	GITHUB_USER=xxx
+	GITHUB_PASSWORD=yyy
 
 ## Starting webproject for services
 `honcho start`
@@ -62,11 +62,32 @@ If using foreman yo will have to us v.0.61. It is hpwever recomended to use __ho
 
 `gem install foreman -v 0.61`
 
-##Install heroku (optional)
-If you are to be working with heroku you may have to install the toolbelt. Otherwise skip this step.
-Make sure to install into a path without spaces. Standard path does not work.
+## Working with heroku (optional)
+The service and documentation platform is hosted on heroku.
+If you are to be working with heroku you may have to install the toolbelt.
+Make sure to install into a path without spaces. Standard path may not work.
 
-`https://toolbelt.heroku.com/windows`
+	https://toolbelt.heroku.com/windows
+
+### Publish to heroku using git
+Publishing to heroku is done by commiting to a specific git repo.
+
+Setup the heroku repos as remotes to you local repo
+
+	heroku git:remote -a limebootstrapservices -r heroku
+	heroku git:remote -a limebootstrapservices-dev -r heroku-dev
+
+Send keys of you have not alread done so
+
+	heroku keys:add
+
+Publish to heroku
+
+	git push heroku-dev master
+
+Check the logs
+
+	heroku logs --app limebootstrapservices-dev
 
 ### Install ruby from standard source
 
