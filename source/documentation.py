@@ -4,6 +4,7 @@ import os
 import arrow
 import base64
 import sys
+import subprocess
 
 class DocumentationLoader:
     def __init__(self):
@@ -20,7 +21,8 @@ class DocumentationLoader:
             work_dir = os.getcwd()
             print(work_dir)
             os.chdir('documentation')
-            os.system("python "+os.path.join(os.path.dirname(sys.executable),"mkdocs")+" build")
+            #os.system("python "+os.path.join(os.path.dirname(sys.executable),"mkdocs")+" build")
+            subprocess.Popen("python "+os.path.join(os.path.dirname(sys.executable),"mkdocs")+" build", shell=True)
             os.chdir(work_dir)
 
         if not os.path.isfile(os.path.join('web','manual','index.html')):
