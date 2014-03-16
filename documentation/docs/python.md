@@ -98,6 +98,10 @@ Environments real addresses are located on the following urls, production is ali
 	http://limebootstrapservices.herokuapp.com/
 	http://limebootstrapservices-dev.herokuapp.com/
 
+Some environment variables will have to be present on both environments similar to en _.env_ file on local enviroment.
+
+	heroku config:set GITHUB_USER=xxx --app limebootstrapservices-dev
+	heroku config:set GITHUB_PASSWORD=yyy --app limebootstrapservices-dev 
 
 ### Install ruby from standard source
 
