@@ -85,6 +85,10 @@ Publish to heroku
 
 	git push heroku-dev master
 
+to publish from another branch then master use
+	
+	git push heroku-dev <my branch>:master
+
 Check the logs
 
 	heroku logs --app limebootstrapservices-dev
