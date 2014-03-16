@@ -29,7 +29,7 @@ ghZip = getZipFromGitHub.getZipFromGitHub("https://github.com/Lundalogik/LimeBoo
 
 print("Building manual...")
 work_dir = os.getcwd()
-os.chdir('Documentation')
+os.chdir('documentation')
 os.system("python "+os.path.join(os.path.dirname(sys.executable),"mkdocs")+" build")
 os.chdir(work_dir)
 
