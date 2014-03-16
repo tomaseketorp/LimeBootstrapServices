@@ -142,8 +142,10 @@ The example below uses the versatile knockout binding `attr` to add a tooltip wi
 <li data-bind="vba:'Actionpad_Person.newComment', text:localize.Actionpad_Person.t_newcomment, icon:'fa-comment', attr: { title: localize.Actionpad_Person.tooltip_newcomment }"></li>
 ```
 
-#####Technical note
+#####Technical notes
 The translations are added to the global view model and are thus available in your apps.
+
+Note that it is not possible to use localization in the standard way, e.g., `localize.Actionpad_Person.t_newcomment` within a block where you are using the knockout binding `with`.
 
 ###Fetching data from fields in LIME Pro
 All fields from the ActiveInspector are automagically available for you to use in your view. The syntax is `[Record class name].[field database name].[property]`.
@@ -166,7 +168,7 @@ The available properties are (in order of relevance):
 ###Going beyond the ActiveInspector - Loading additional data
 It is common to use data from more than the ActiveInspector and the following syntax will NOT work `<li data-bind="text:person.company.phone.text"></li>`
 
-Instead you can load additional data by requesting data sources in `_config.js`. You'll find more information about this in the advanced section
+Instead you can load additional data by requesting data sources in `_config.js`. You'll find more information about this in the advanced section.
 
 The loaded data can then be access by: 
 
@@ -260,21 +262,17 @@ Input parameters are provided by simply separating them by commas.
     ```
 
 ###Working with time and dates
-Dates are a hazel, except when you have the awesome library [Moment.js](http://momentjs.com).
+Dates are a hassle, except when you have the awesome library [Moment.js](http://momentjs.com).
 
 To create a iso-date:
 `moment()`
 
 To parse almost any date format:
-´moment([CRAZY DATE FORMAT])´
+`moment([CRAZY DATE FORMAT])`
 
 Moment even makes time and dates readable to people.
-´moment().timeAgo(2011-01-01)´ will give you, "A few years ago"
+`moment().timeAgo(2011-01-01)` will give you, "A few years ago"
 
 Moment is automagically setup to use the same language and date-format as the language of the LIME Client. 
 Remember to use it and check out it further!
-
-
-
-
 
