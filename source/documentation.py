@@ -22,3 +22,6 @@ class DocumentationLoader:
             os.chdir('documentation')
             os.system("python "+os.path.join(os.path.dirname(sys.executable),"mkdocs")+" build")
             os.chdir(work_dir)
+
+        if not os.path.isfile(os.path.join('web','manual','index.html')):
+            print("Still no docs, somethings fishy!")
