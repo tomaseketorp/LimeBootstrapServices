@@ -273,11 +273,15 @@ List of custom handlers:
 </code></pre>
 
 <h3 id="hiding-or-showing-elements">Hiding or showing elements</h3>
-<p>It is common that some elements only should be visible for certain users or when specific conditions apply. The Data-visibility is used as follows:</p>
+<p>It is common that some elements only should be visible for certain users or when specific conditions apply. It can be done in two different ways. Either use the LIME Bootstrap data-binding <code>vbaVisible:</code> or use the knockout binding <code>visible:</code>.</p>
+<p>The <code>vbaVisible:</code> is used as follows. A VBA function is called, handling the logic whether the element should be visible or not, returning a boolean. <br />
+<strong>true:</strong> Element is visible <br />
+<strong>false:</strong> Element hidden</p>
+<p>In complex cases the VBA-function can take input parameters to reduce the number of VBA functions required.</p>
 <pre class="prettyprint well"><code class="html">&lt;li data-bind=&quot;vbaVisible:'ActionPad_Helpdesk.HideLinks, take'&quot;&gt;&lt;/li&gt;
 </code></pre>
 
-<p>You can also use knockouts built in handler <code>visible:</code> to hide or show elements, any valid Javascript will be evaluated. Example:</p>
+<p>You can also use knockout's built in handler <code>visible:</code> to hide or show elements. Any valid Javascript will be evaluated. Example:</p>
 <pre class="prettyprint well"><code class="html">&lt;!-- Shows an bootstrap alert if the todo is late. Moment.js is used to parse and handle dates.--&gt;
 &lt;div class=&quot;alert alert-error&quot; data-bind=&quot;
    visible: todo.endtime.value !== null &amp;&amp; (moment(todo.endtime.value) &lt; moment() &amp;&amp; todo.done.value != 1),
@@ -286,10 +290,12 @@ List of custom handlers:
 &lt;/div&gt;
 </code></pre>
 
-<p>A VBA function is called, handling the logic whether the element should be visible or not, returning an boolean. <br />
-<strong>true:</strong> Element is visible <br />
-<strong>false:</strong> Element hidden
-In complex cases the VBA-function can take input parameters to reduce the number of VBA functions required. </p>
+<p>The binding <code>vbaVisible:</code> is only able to execute a given VBA function that returns true or false. If you need to add some kind of code on top of that VBA function, use the original knockout binding <code>visible:</code> instead. This example uses the opposite of the function result, but any other javascript code would also work fine.</p>
+<pre class="prettyprint well"><code class="html">&lt;div data-bind=&quot;visible:!lbs.common.executeVba('App_MoveDate.moveDaysPossible')&quot;&gt;
+...
+&lt;/div&gt;
+</code></pre>
+
 <h3 id="executing-vba-functions-and-specific-actions">Executing VBA-functions and specific actions</h3>
 <p><code>vba:</code> is used to trigger VBA-functions and specific actions on click. To call a VBA function simply use:</p>
 <p><code>html
