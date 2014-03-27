@@ -182,13 +182,19 @@ The loaded data can then be access by:
 
 ###Hiding or showing elements
 
-It is common that some elements only should be visible for certain users or when specific conditions apply. The Data-visibility is used as follows:
+It is common that some elements only should be visible for certain users or when specific conditions apply. It can be done in two different ways. Either use the LIME Bootstrap data-binding `vbaVisible:` or use the knockout binding `visible:`.
+
+The `vbaVisible:` is used as follows. A VBA function is called, handling the logic whether the element should be visible or not, returning a boolean.   
+__true:__ Element is visible   
+__false:__ Element hidden
+
+In complex cases the VBA-function can take input parameters to reduce the number of VBA functions required.
 
 ```html
 <li data-bind="vbaVisible:'ActionPad_Helpdesk.HideLinks, take'"></li>
 ```
 
-You can also use knockouts built in handler `visible:` to hide or show elements, any valid Javascript will be evaluated. Example:
+You can also use knockout's built in handler `visible:` to hide or show elements. Any valid Javascript will be evaluated. Example:
 
 ```html
 <!-- Shows an bootstrap alert if the todo is late. Moment.js is used to parse and handle dates.-->
@@ -199,11 +205,13 @@ You can also use knockouts built in handler `visible:` to hide or show elements,
 </div>
 ```
 
+The binding `vbaVisible:` is only able to execute a given VBA function that returns true or false. If you need to add some kind of code on top of that VBA function, use the original knockout binding `visible:` instead. This example uses the opposite of the function result, but any other javascript code would also work fine.
 
-A VBA function is called, handling the logic whether the element should be visible or not, returning an boolean.   
-__true:__ Element is visible   
-__false:__ Element hidden
-In complex cases the VBA-function can take input parameters to reduce the number of VBA functions required. 
+```html
+<div data-bind="visible:!lbs.common.executeVba('App_MoveDate.moveDaysPossible')">
+...
+</div>
+```
 
 ###Executing VBA-functions and specific actions
 `vba:` is used to trigger VBA-functions and specific actions on click. To call a VBA function simply use:
