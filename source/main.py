@@ -29,13 +29,13 @@ class EnableCors(object):
 #ghZip = getZipFromGitHub.getZipFromGitHub("https://github.com/Lundalogik/LimeBootstrapAppStore/archive/master.zip")
 
 print("Creating DocumentationLoader")
-ghDoc = documentation.DocumentationLoader();
-ghDoc.verifyIntegrity();
+#ghDoc = documentation.DocumentationLoader();
+#ghDoc.verifyIntegrity();
 
 print("Starting LappStore!")
 ghCon = browseGitHub.GitHubConnectorAppStore()
 print("Loading data from GitHub AppStore...")
-#ghCon.getAppsJSON()
+ghCon.getAppsJSON()
 
 #print("Starting Core!")
 #ghConCore = browseGitHub.GitHubConnectorCore()
@@ -46,9 +46,9 @@ print("Server is ready!")
 
 lappStore = bottle.app()
 
-@lappStore.hook('before_request')
-def checkDocumentationIntegrety():
-    ghDoc.verifyIntegrity();
+#@lappStore.hook('before_request')
+#def checkDocumentationIntegrety():
+#    ghDoc.verifyIntegrity();
 
 @lappStore.route('/')
 def send_static():
