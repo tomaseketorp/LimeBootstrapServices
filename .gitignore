@@ -6,4 +6,3 @@ env
 .idea/
 *.zip
 /web/temp/
-/web/manual/*
