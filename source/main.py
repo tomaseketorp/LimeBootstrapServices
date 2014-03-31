@@ -4,10 +4,11 @@ from bottle import redirect
 from bottle import static_file
 import browseGitHub
 import getZipFromGitHub
-import documentation  
+import documentation
 import os
 import sys
 import os.path
+
 
 class EnableCors(object):
     name = 'enable_cors'
@@ -26,7 +27,7 @@ class EnableCors(object):
 
         return _enable_cors
 
-#ghZip = getZipFromGitHub.getZipFromGitHub("https://github.com/Lundalogik/LimeBootstrapAppStore/archive/master.zip")
+ghZip = getZipFromGitHub.getZipFromGitHub("https://github.com/Lundalogik/LimeBootstrapAppStore/archive/master.zip")
 
 print("Creating DocumentationLoader")
 #ghDoc = documentation.DocumentationLoader();
@@ -49,6 +50,7 @@ lappStore = bottle.app()
 #@lappStore.hook('before_request')
 #def checkDocumentationIntegrety():
 #    ghDoc.verifyIntegrity();
+
 
 @lappStore.route('/')
 def send_static():
@@ -100,7 +102,7 @@ def getApp(app = ""):
 
 @lappStore.route('/api/manual/', method='GET')
 def getManualData():
-    return ghConCore.getManualData()
+    return False #ghConCore.getManualData()
 
 @lappStore.route('/api/version/', method='GET')
 def getVersionData():
