@@ -50,9 +50,13 @@ body {
 .reveal .grey h6,
 .reveal .grey span,
 .reveal .grey small,
+.reveal .grey li,
 .reveal .grey p
 {
   color: #6796D8
+}
+.reveal .grey li{
+  text-align: left;
 }
 
 /*********************************************
