@@ -48,7 +48,6 @@ body {
 .reveal .grey h4,
 .reveal .grey h5,
 .reveal .grey h6,
-.reveal .grey span,
 .reveal .grey small,
 .reveal .grey li,
 .reveal .grey p
@@ -57,6 +56,10 @@ body {
 }
 .reveal .grey li{
   text-align: left;
+}
+
+.reveal pre {
+  box-shadow: none;
 }
 
 /*********************************************
