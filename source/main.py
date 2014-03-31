@@ -64,6 +64,10 @@ def send_static():
 def send_static():
     return redirect('/web/manual/index.html')
 
+@lappStore.route('/tutorial/')
+def send_static():
+    return redirect('/web/tutorial/index.html')
+
 @lappStore.route('/web/<filename:path>')
 def send_static(filename):
     filename = filename
