@@ -257,14 +257,14 @@ var vm = {
                         </ul>
                     </section>
                 </section>
-                <!-- Assigment 1 -->
+                <!-- Assignment 1 -->
                 <section>
                     <section>
-                        <h2>Assigment 1:</h2><br>
-                        <p>Our dear customer "The Empire" would like to have a ActionPad on the Person card. They like to keep it simple and would only like to have the persons name displayed. Can you fix this?</p>
+                        <h2>Assignment 1:</h2><br>
+                        <p>Our dear customer "The Empire" would like to have a ActionPad on the Person card. They like to keep it simple and would only like to have the persons name displayed. Can you fix this? The customers project manager mr Vader will help oversee the construction</p>
                     </section>
                     <section data-background="#F2F2F2" class="grey">
-                        <h2>Assigment 1:</h2><br>
+                        <h2>Assignment 1:</h2><br>
                         <p> Open "person.html" and add:</p>
                         <pre>
                             <code class="html">
@@ -274,18 +274,18 @@ var vm = {
                         </pre>
                     </section>
                 </section>
-                <!-- Assigment 2 -->
+
+                <!-- Assignment 2 -->
                 <section>
                     <section>
-                        <h2>Assigment 2:</h2><br>
-                        <p>You have angered Mr. Vader (not good), by making a but ugly ActionPad. You should have known better! Let's make it beautiful by adding a <a href="http://limebootstrap.lundalogik.com/web/manual/basicUsage/" target="_blank">header-section</a>. Vader does like orange (!) </p>
+                        <h2>Assignment 2:</h2><br>
+                        <p>You have angered Mr. Vader (not good, your planet might be doomed), by making a but ugly ActionPad. You should have known better! Let's make it beautiful by adding a <a href="http://limebootstrap.lundalogik.com/web/manual/basicUsage/" target="_blank">header-section</a>. Vader does like orange (!) </p>
                     </section>
                     <section data-background="#F2F2F2" class="grey">
-                        <h2>Assigment 2:</h2><br>
-                        <p> Open "person.html" and add:</p>
+                        <h2>Assignment 2:</h2><br>
                         <pre>
                         <code class="html">
-<!-- Header section, The colorfull thing at the top  -->
+<!-- Header section, The colorful thing at the top  -->
 <div class="header-container orange">
     <div class="header-icon"></div> 
         <h2 data-bind="text:person.firstname.text + ' ' + person.lastname.text"></h2>      
@@ -298,7 +298,103 @@ var vm = {
                     <h2>Quiz time!</h2>
                         <ul> 
                             <li>How did LBS know it should use a picture in the heading?</li>
+                            <li>Where do you find more pictures like this one?</li>
+                            <li>My customer would like a custom color. How should I do that?</li>
                         </ul>
+                    </section>
+                </section>
+                 <!-- Assignment 3 -->
+                <section>
+                    <section>
+                        <h2>Assignment 3:</h2><br>
+                        <p> Now impressed with your craftsmanship mr. Vader would like to have quick access the persons email and phone in the action. Please remember your previous mistake of making things but ugly. Add some "info-links" and checkout <a href="http://fortawesome.github.io/Font-Awesome/" target="_blank">Font Awesome</a> and the "icon"-binding</p>
+                    </section>
+                    <section data-background="#F2F2F2" class="grey">
+                        <h2>Assignment 3:</h2><br>
+                        <pre>
+                        <code class="html">
+<!-- Header section, The colorful thing at the top  -->
+<div class="header-container orange">
+    <div class="header-icon"></div>
+    <h2 data-bind="text:person.name.text"></h2> 
+    <ul class="info-links"> 
+        <li data-bind="text:person.phone.text, icon:'fa-phone'"></li>
+        <li data-bind="text:person.mobilephone.text, icon:'fa-mobile-phone'"></li>
+        <li data-bind="text:person.email.text, icon:'fa-mail'"></li>
+    </ul> 
+</div>
+                        </code>
+                        </pre>
+                    </section>
+                </section>
+                <!-- Assignment 3 -->
+                <section>
+                    <section>
+                        <h2>Assignment 4:</h2><br>
+                        <p>Now you have really pissed of mr. Vader! Nothing happens when he clicks the links (He even tried with something he called The Force. Did. Not. Work.). Fix it, and fix it fast! Check out if the LBS bindings can help you!  <a href="http://limebootstrap.lundalogik.com/web/manual/basicUsage/#bindings" target="_blank">Help!</a> </p>
+                    </section>
+                    <section data-background="#F2F2F2" class="grey">
+                        <h2>Assignment 4:</h2><br>
+                        <pre>
+                        <code class="html">
+<!-- Header section, The colorful thing at the top  -->
+<div class="header-container yellow">
+    <div class="header-icon"></div>
+    <h2 data-bind="text:person.name.text"></h2> 
+    <ul class="info-links"> 
+        <li data-bind="text:person.email.text, email: person.email.text, icon:'fa-mail'"> </li>
+        <li data-bind="text:person.phone.text, call:person.phone.text, icon:'fa-phone'"></li>
+        <li data-bind="text:person.mobilephone.text, call:person.mobilephone.text, icon:'fa-mobile-phone'"></li>
+    </ul> 
+</div>
+                        </code>
+                        </pre>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Assignment 5:</h2><br>
+                        <p>Now once again happy, Vader decides he would like even more information. This time from the the related company card. He would like the name of the company (clickable of course) and company city with a map connection. Let's just jump into to it! How hard can it be? </p>
+                    </section>
+                    <section data-background="#F2F2F2" class="grey">
+                        
+                        <p>If you tried something similar to this:</p>
+                        <pre>
+                        <code class="html">
+<!-- Header section, The colorful thing at the top  -->
+...
+    <ul class="info-links"> 
+    ...
+        <li data-bind="text:company.name.text, limeLink: company, icon:'fa-building'"> </li>
+        <li data-bind="text:company.city.text, showOnMap:company.city.text, icon:'fa-map'"></li>
+    </ul> 
+...
+                        </code>
+                        </pre>
+                    </section>
+                    <section data-background="#F2F2F2" class="grey">
+                        <p>Or like this:</p>
+                         <pre>
+                        <code class="html">
+<!-- Header section, The colorful thing at the top  -->
+...
+    <ul class="info-links"> 
+    ...
+        <li data-bind="text:person.company.name.text, limeLink: person.company, icon:'fa-building'"> </li>
+        <li data-bind="text:person.company.city.text, showOnMap: person.company.city.text, icon:'fa-map'"></li>
+    </ul> 
+...
+                        </code>
+                        </pre>
+                        <p>You might have made Vader say bad things to a puppy.</p>
+                    </section>
+                    <section data-background="#F2F2F2" class="grey">
+                        <p>Your ActionPad will probably look like this:</p>
+                        <img src="img/error.png">
+                        <small>The red this is the debug log. She is our friend. She shows up if we make a bad mistake and tries to help us fix it. We can even have here around all the time to help us. Just open "_config.js" and set "debug=true". Do this now</small>
+                    </section>
+                    <section data-background="#F2F2F2" class="grey">
+                        <p>The console log says that "company is undefined". By default only the ActiveInspectors' data is loaded. Luckily we can ask for more data in "_config.js". Add a "person" node and use the "related record"-datasource.</p>
                     </section>
                 </section>
             </div>
