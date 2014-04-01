@@ -8,6 +8,12 @@ Just replace the `system`-folder and `lbs.html` and you are good to go, unless s
 
 
 #Changelog
+
+###1.2
+*	ViewModel viewer
+*	Rightclick enabled in debugmode
+*	No versioncheck outside if Lime
+
 ###1.1
 *	Bugfix: Handeling of `_config.js` now works in IE9 
 *	Bugfix: Index-view won't cause an ugly error any more
