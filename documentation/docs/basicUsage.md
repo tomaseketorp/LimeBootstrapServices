@@ -7,7 +7,7 @@ An Actionpad built with LIME Bootstrap has the following structure:
 
 ```html
 <!-- Header section, The colorfull thing at the top  -->
-<div class="header-container [color]"> <!-- Specify the color of the header. Please see color section for available colors  -->
+<div class="header-container yellow"> <!-- Specify the color of the header. Please see color section for available colors  -->
     <div class="header-icon"></div>  <!-- Specify the icon of the header. Please see icon section for available special icons  -->
     <h2 data-bind=""></h2>
         <ul class="info-links">         
@@ -43,7 +43,6 @@ The header section is the colorful header of each actionpad. The following color
 *   yellow
 *   orange
 *   darkgrey
-*   white
 *   purple
 
 Usage: 
