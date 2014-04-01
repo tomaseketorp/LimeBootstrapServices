@@ -120,6 +120,7 @@ As default you only have access to the data of the ActiveInspector!
 ###Custom bindings
 To make your life easier we have implemented a few custom bindnings.
 List of custom handlers:
+
 *   __call:__ - _Tries to call the provided phone number_
 *   __email:__ - _Tries to email the provided address_
 *   __icon:__ - _Prepends the supplied font awesome icon to the html element_
@@ -128,6 +129,7 @@ List of custom handlers:
 *   __showOnMap:__ - _Opens Google Maps with the supplied data as a search query_
 *   __vba:__ - _Provide an string of an VBA function with it's parameters separated by commas_
 *   __vbaVisible:__ - _Extends knockouts 'visible:' by executing the supplied Boolean VBA function_
+*   __appInvoke:__ - Invokes an old-style actionpad app like textfileimport or duplicatemerge
 
 ### Translation: Handling multiple languages
 All available translations from the Localization table are automatically available in the actionpad context. The same language as the logged in user uses is automatically used. The translations are cached in a dictionary to increase speed, but requires you to run `ThisApplication.Setup` to rebuild the dictionary if you add translations or make changes. 
@@ -262,11 +264,18 @@ Input parameters are provided by simply separating them by commas.
     <li data-bind="text:todo.company.text, limeLink:todo.company, icon:'fa-flag'"></li>
     ```
 
-###Send an email
+### Send an email
 *   __email__ - Creates an email. TODO: Should use LIME's built in email factory.
     
     ```html
     <li data-bind="text:person.email.text, email:person.email.text, icon:'fa-mail'"></li>
+    ```
+    
+### Start textfileimport
+* __appInvoke__
+
+    ```html
+        <li data-bind="appInvoke: 'textfileimport"></li>
     ```
 
 ###Working with time and dates

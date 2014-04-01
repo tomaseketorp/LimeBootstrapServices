@@ -92,8 +92,6 @@
                 
                     <li><a class="toctree-l3" href="#starting-webproject-for-services">Starting webproject for services</a></li>
                 
-                    <li><a class="toctree-l3" href="#change-forman-version-optional">Change forman version (optional)</a></li>
-                
                     <li><a class="toctree-l3" href="#working-with-heroku-optional">Working with heroku (optional)</a></li>
                 
                     <li><a class="toctree-l3" href="#working-with-powershell-optional">Working with powershell (optional)</a></li>
@@ -160,11 +158,14 @@ The script collection is refered to as <strong>$pyh</strong>.</p>
 </ul>
 <p>This will install an set everything up.</p>
 <h3 id="activate-virtual-environment">Activate virtual environment</h3>
-<p><code>workon [&lt;name&gt;]</code></p>
+<pre class="prettyprint well"><code>workon [&lt;name&gt;]
+</code></pre>
 <h3 id="deactive-virtual-environment">Deactive virtual environment</h3>
-<p><code>deactivate</code></p>
+<pre class="prettyprint well"><code>deactivate
+</code></pre>
 <h3 id="install-dependecies">Install dependecies</h3>
-<p><code>pip install -r requirements.txt</code></p>
+<pre class="prettyprint well"><code>pip install -r requirements.txt`
+</code></pre>
 <h2 id="setup-environment-variables">Setup environment variables</h2>
 <p>To set environment variables such as github credentials. Create a file named
 <code>.env</code> in the prject root and list key-value pairs as
@@ -177,11 +178,6 @@ GITHUB_PASSWORD=yyy
 </code></pre>
 <h2 id="starting-webproject-for-services">Starting webproject for services</h2>
 <p><code>honcho start</code></p>
-<h2 id="change-forman-version-optional">Change forman version (optional)</h2>
-<p>If using foreman yo will have to us v.0.61. It is hpwever recomended to use <strong>honcho</strong> instead.</p>
-<p>"gem install foreman" installed v0.63, which does not work for "foreman start"</p>
-<p><code>gem uninstall foreman</code></p>
-<p><code>gem install foreman -v 0.61</code></p>
 <h2 id="working-with-heroku-optional">Working with heroku (optional)</h2>
 <p>The service and documentation platform is hosted on heroku.
 If you are to be working with heroku you may have to install the toolbelt.
@@ -214,13 +210,6 @@ http://limebootstrapservices-dev.herokuapp.com/
 <pre class="prettyprint well"><code>heroku config:set GITHUB_USER=xxx --app limebootstrapservices-dev
 heroku config:set GITHUB_PASSWORD=yyy --app limebootstrapservices-dev
 </code></pre>
-<h3 id="install-ruby-from-standard-source">Install ruby from standard source</h3>
-<p>Ruby that is included in heroku does not work in some casess
-<code>http://rubyinstaller.org/downloads/</code></p>
-<h3 id="add-ruby-environment-path">Add ruby environment path</h3>
-<pre class="prettyprint well"><code>[Environment]::SetEnvironmentVariable(&quot;Path&quot;, &quot;$env:Path;C:\Ruby200\bin\&quot;, &quot;Machine&quot;)
-</code></pre>
-
 <h2 id="working-with-powershell-optional">Working with powershell (optional)</h2>
 <p>Add python environment path.
 Set path as administrator and set it for whole machine</p>

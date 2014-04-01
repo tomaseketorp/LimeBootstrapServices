@@ -162,13 +162,15 @@ lbs.html will detemine which view to load either by a supplied query string (the
 
 <h2 id="different-wrappers">Different wrappers</h2>
 <p>In LIME HTML can be displayed in the actionpad, in a HTML-field, in a HTML-tab and in a HTML-dialog. Theses places are quite different and requires some basic setup to work well. Your view can thus be loaded into three different wrappers for helping you with the different conditions.</p>
-<p>The three basic wrappers of content:
-<em>   Actionpad-wrapper. A thin and long wrapper with a slightly lighter background images with a sharp edge to teh rest of the content:
-</em>   Inline-wrapper. Used for HTML-fields. Completely plain, with the same color as the Inspector and no padding or margin. Built to seamlessly look as a part of the inspector.
-*   Tab-wrapper. Used for wider layouts, such as a tab or a dialog. Uses default Twitter Bootstrap margins and is fully responsive.</p>
+<p>The three basic wrappers of content:</p>
+<ul>
+<li><strong>Actionpad-wrapper</strong>. A thin and long wrapper with a slightly lighter background images with a sharp edge to teh rest of the content:</li>
+<li><strong>Inline-wrapper</strong>. Used for HTML-fields. Completely plain, with the same color as the Inspector and no padding or margin. Built to seamlessly look as a part of the inspector.</li>
+<li><strong>Tab-wrapper</strong>. Used for wider layouts, such as a tab or a dialog. Uses default Twitter Bootstrap margins and is fully responsive.</li>
+</ul>
 <p>The Actionpad wrapper is allways used unless anything else is stated. Pick your wrapper by suppling a querystring to lbs.html</p>
-<p><strong>Inline:</strong>_ <code>lbs.html?type=inline</code></p>
-<p><strong>Tab:</strong> <code>lbs.html?type=tab</code></p>
+<p><strong>Inline:</strong>_ <code>lbs.html?type=inline</code>
+<strong>Tab:</strong> <code>lbs.html?type=tab</code></p>
 <p>When working with tabs, fields or dialogs it is easiest to use VBA to set the URL. Example:</p>
 <pre class="prettyprint well"><code class="VBA">    ActiveInspector.Controls.SetValue(&quot;htmlfield&quot;, WebFolder &amp; &quot;lbs.html?ap=foo&amp;type=inline&quot;)
 </code></pre>
@@ -176,24 +178,33 @@ lbs.html will detemine which view to load either by a supplied query string (the
 <h2 id="data-sources">Data sources</h2>
 <p>A core concept in LIME Bootstrap is data sources. A data source is just what it sounds like, a source of data. The source can be many things, like a LIME Inspector, a REST web-service, a stored procedure or a VBA function. Data sources are used both while working with basic views and especially when working with apps. The available data sources are:</p>
 <ul>
-<li><strong>activeInspector:</strong> Fetch data from the ActiveInspector. <code>{type:'activeInspector'}</code></li>
-<li><strong>xml:</strong> Execute specified VBA-function which must return a XML as string. <code>{type:'xml',source:'[Name of VBA-function]' }</code></li>
-<li><strong>record:</strong> Execute specified VBA-function which must return a Record object. <code>{type:'record',source:'[Name of VBA-function]' }</code></li>
-<li><strong>records:</strong> Execute specified VBA-function which must return a Records object. <code>{type:'records',source:'[Name of VBA-function]' }</code></li>
-<li><strong>localization:</strong> Loads all translations in the current LIME language. <code>{localization:'records' }</code></li>
-<li><strong>storedProcedure:</strong> Execute specified stored procedure which must be set to "as xml". <code>{type:'storedProcedure',source:'[Name of stored procedure]' }</code></li>
-<li><strong>HTTPGetXml:</strong> Calls a web-service and expects a xml response.   <code>{type:'HTTPGetXml',source:'[URL]' }</code></li>
-<li><strong>SOAPGetXml:</strong> Calls a SOAP web-service.  <code>{type:'SOAPGetXml',source:{url:[URL], action:[SOAP action as xml string], xml:[SOAP request xml]} }</code></li>
-<li><strong>relatedRecord:</strong> Loads a record based on id and class. Used to load related data to an inspector. <code>{type:'relatedRecord',class:[name of class], idrecord:[Id of record] }</code></li>
+<li><strong>activeInspector:</strong> Fetch data from the ActiveInspector.<br />
+<code>{type:'activeInspector'}</code></li>
+<li><strong>xml:</strong> Execute specified VBA-function which must return a XML as string.<br />
+<code>{type:'xml',source:'[Name of VBA-function]' }</code></li>
+<li><strong>record:</strong> Execute specified VBA-function which must return a Record object.<br />
+<code>{type:'record',source:'[Name of VBA-function]' }</code></li>
+<li><strong>records:</strong> Execute specified VBA-function which must return a Records object.<br />
+<code>{type:'records',source:'[Name of VBA-function]' }</code></li>
+<li><strong>localization:</strong> Loads all translations in the current LIME language.<br />
+<code>{localization:'records' }</code></li>
+<li><strong>storedProcedure:</strong> Execute specified stored procedure which must be set to "as xml".<br />
+<code>{type:'storedProcedure',source:'[Name of stored procedure]' }</code></li>
+<li><strong>HTTPGetXml:</strong> Calls a web-service and expects a xml response.<br />
+<code>{type:'HTTPGetXml',source:'[URL]'}</code></li>
+<li><strong>SOAPGetXml:</strong> Calls a SOAP web-service.<br />
+<code>{type:'SOAPGetXml',source:{url:[URL], action:[SOAP action as xml], xml:[SOAP request xml]}</code></li>
+<li><strong>relatedRecord:</strong> Loads a record based on id and class. Used to load related data to an inspector.<br />
+<code>{type:'relatedRecord',source:[relationfield on activeinspector]}</code></li>
 </ul>
-<p>A data source can also take a parameter "alias", which lets you specify a name for the data source in viewModel.</p>
+<p>A data source can also take a parameter <strong>"alias"</strong>, which lets you specify a name for the data source in viewModel. This might be usefull if you have multiple sources on the same table wich may couse collisions.</p>
 <p>Examples:</p>
 <pre class="prettyprint well"><code class="javascript">
  dataSources: 
         [
             {type: 'activeInspector'}, 
             {type: 'localization'},
-            {type: 'record', source: 'ActionPadTools.GetCompanyContactData'}, 
+            {type: 'record', source: 'ActionPadTools.GetCompanyContactData', alias: 'contact'}, 
             {type: 'storedProcedure', source: ''}
         ],
         autorefresh : false

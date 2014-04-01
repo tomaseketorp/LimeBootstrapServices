@@ -41,14 +41,14 @@ $python -m http.server
 In LIME HTML can be displayed in the actionpad, in a HTML-field, in a HTML-tab and in a HTML-dialog. Theses places are quite different and requires some basic setup to work well. Your view can thus be loaded into three different wrappers for helping you with the different conditions.
 
 The three basic wrappers of content:
-*	Actionpad-wrapper. A thin and long wrapper with a slightly lighter background images with a sharp edge to teh rest of the content:
-*	Inline-wrapper. Used for HTML-fields. Completely plain, with the same color as the Inspector and no padding or margin. Built to seamlessly look as a part of the inspector.
-*	Tab-wrapper. Used for wider layouts, such as a tab or a dialog. Uses default Twitter Bootstrap margins and is fully responsive.
+
+*	__Actionpad-wrapper__. A thin and long wrapper with a slightly lighter background images with a sharp edge to teh rest of the content:
+*	__Inline-wrapper__. Used for HTML-fields. Completely plain, with the same color as the Inspector and no padding or margin. Built to seamlessly look as a part of the inspector.
+*	__Tab-wrapper__. Used for wider layouts, such as a tab or a dialog. Uses default Twitter Bootstrap margins and is fully responsive.
 
 The Actionpad wrapper is allways used unless anything else is stated. Pick your wrapper by suppling a querystring to lbs.html
 
 __Inline:___ `lbs.html?type=inline`
-
 __Tab:__ `lbs.html?type=tab`
 
 When working with tabs, fields or dialogs it is easiest to use VBA to set the URL. Example:
@@ -61,17 +61,26 @@ When working with tabs, fields or dialogs it is easiest to use VBA to set the UR
 
 A core concept in LIME Bootstrap is data sources. A data source is just what it sounds like, a source of data. The source can be many things, like a LIME Inspector, a REST web-service, a stored procedure or a VBA function. Data sources are used both while working with basic views and especially when working with apps. The available data sources are:
 
-*   __activeInspector:__ Fetch data from the ActiveInspector. `{type:'activeInspector'}`
-*   __xml:__ Execute specified VBA-function which must return a XML as string. `{type:'xml',source:'[Name of VBA-function]' }`
-*   __record:__ Execute specified VBA-function which must return a Record object. `{type:'record',source:'[Name of VBA-function]' }`
-*   __records:__ Execute specified VBA-function which must return a Records object. `{type:'records',source:'[Name of VBA-function]' }`
-*   __localization:__ Loads all translations in the current LIME language. `{localization:'records' }`
-*   __storedProcedure:__ Execute specified stored procedure which must be set to "as xml". `{type:'storedProcedure',source:'[Name of stored procedure]' }`
-*   __HTTPGetXml:__ Calls a web-service and expects a xml response.   `{type:'HTTPGetXml',source:'[URL]' }`
-*   __SOAPGetXml:__ Calls a SOAP web-service.  `{type:'SOAPGetXml',source:{url:[URL], action:[SOAP action as xml string], xml:[SOAP request xml]} }`
-*   __relatedRecord:__ Loads a record based on id and class. Used to load related data to an inspector. `{type:'relatedRecord',class:[name of class], idrecord:[Id of record] }`
+*   __activeInspector:__ Fetch data from the ActiveInspector.  
+`{type:'activeInspector'}`
+*   __xml:__ Execute specified VBA-function which must return a XML as string.  
+`{type:'xml',source:'[Name of VBA-function]' }`
+*   __record:__ Execute specified VBA-function which must return a Record object.  
+`{type:'record',source:'[Name of VBA-function]' }`
+*   __records:__ Execute specified VBA-function which must return a Records object.  
+`{type:'records',source:'[Name of VBA-function]' }`
+*   __localization:__ Loads all translations in the current LIME language.  
+`{localization:'records' }`
+*   __storedProcedure:__ Execute specified stored procedure which must be set to "as xml".  
+`{type:'storedProcedure',source:'[Name of stored procedure]' }`
+*   __HTTPGetXml:__ Calls a web-service and expects a xml response.  
+`{type:'HTTPGetXml',source:'[URL]'}`
+*   __SOAPGetXml:__ Calls a SOAP web-service.  
+`{type:'SOAPGetXml',source:{url:[URL], action:[SOAP action as xml], xml:[SOAP request xml]}`
+*   __relatedRecord:__ Loads a record based on id and class. Used to load related data to an inspector.  
+`{type:'relatedRecord',source:[relationfield on activeinspector]}`
 
-A data source can also take a parameter "alias", which lets you specify a name for the data source in viewModel.
+A data source can also take a parameter __"alias"__, which lets you specify a name for the data source in viewModel. This might be usefull if you have multiple sources on the same table wich may couse collisions.
 
 Examples:
 
@@ -81,7 +90,7 @@ Examples:
         [
             {type: 'activeInspector'}, 
             {type: 'localization'},
-            {type: 'record', source: 'ActionPadTools.GetCompanyContactData'}, 
+            {type: 'record', source: 'ActionPadTools.GetCompanyContactData', alias: 'contact'}, 
             {type: 'storedProcedure', source: ''}
         ],
         autorefresh : false

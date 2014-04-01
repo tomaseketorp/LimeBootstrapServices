@@ -29,13 +29,13 @@ It takes 3 parameters.
 This will install an set everything up.
 
 ### Activate virtual environment
-`workon [<name>]`
+	workon [<name>]
 
 ### Deactive virtual environment
-`deactivate`
+	deactivate
 
 ### Install dependecies
-`pip install -r requirements.txt`
+	pip install -r requirements.txt`	
 
 ## Setup environment variables
 To set environment variables such as github credentials. Create a file named
@@ -51,16 +51,6 @@ Also add key "PYTHONUNBUFFERED=true" for immeiate console output
 
 ## Starting webproject for services
 `honcho start`
-
-##Change forman version (optional)
-
-If using foreman yo will have to us v.0.61. It is hpwever recomended to use __honcho__ instead.
-
-"gem install foreman" installed v0.63, which does not work for "foreman start"
-
-`gem uninstall foreman`
-
-`gem install foreman -v 0.61`
 
 ## Working with heroku (optional)
 The service and documentation platform is hosted on heroku.
@@ -103,16 +93,6 @@ Some environment variables will have to be present on both environments similar 
 	heroku config:set GITHUB_USER=xxx --app limebootstrapservices-dev
 	heroku config:set GITHUB_PASSWORD=yyy --app limebootstrapservices-dev 
 
-### Install ruby from standard source
-
-Ruby that is included in heroku does not work in some casess
-`http://rubyinstaller.org/downloads/`
-
-### Add ruby environment path
-
-```
-[Environment]::SetEnvironmentVariable("Path", "$env:Path;C:\Ruby200\bin\", "Machine")
-```
 
 ## Working with powershell (optional)
 Add python environment path.

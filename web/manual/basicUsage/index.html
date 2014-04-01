@@ -229,11 +229,18 @@ Read more about bindings and Knockout <a href="http://knockoutjs.com/documentati
 <p>As default you only have access to the data of the ActiveInspector!</p>
 <h3 id="custom-bindings">Custom bindings</h3>
 <p>To make your life easier we have implemented a few custom bindnings.
-List of custom handlers:
-<em>   <strong>call:</strong> - <em>Tries to call the provided phone number</em></em>   <strong>email:</strong> - <em>Tries to email the provided address</em>
-<em>   <strong>icon:</strong> - <em>Prepends the supplied font awesome icon to the html element</em></em>   <strong>limeLink:</strong> - <em>Creates an LIME link from a provided relationship field, for example person.company</em>
-<em>   <strong>openURL:</strong> - <em>Opens the supplied URL in a external browser</em></em>   <strong>showOnMap:</strong> - <em>Opens Google Maps with the supplied data as a search query</em>
-<em>   <strong>vba:</strong> - <em>Provide an string of an VBA function with it's parameters separated by commas</em></em>   <strong>vbaVisible:</strong> - <em>Extends knockouts 'visible:' by executing the supplied Boolean VBA function</em></p>
+List of custom handlers:</p>
+<ul>
+<li><strong>call:</strong> - <em>Tries to call the provided phone number</em></li>
+<li><strong>email:</strong> - <em>Tries to email the provided address</em></li>
+<li><strong>icon:</strong> - <em>Prepends the supplied font awesome icon to the html element</em></li>
+<li><strong>limeLink:</strong> - <em>Creates an LIME link from a provided relationship field, for example person.company</em></li>
+<li><strong>openURL:</strong> - <em>Opens the supplied URL in a external browser</em></li>
+<li><strong>showOnMap:</strong> - <em>Opens Google Maps with the supplied data as a search query</em></li>
+<li><strong>vba:</strong> - <em>Provide an string of an VBA function with it's parameters separated by commas</em></li>
+<li><strong>vbaVisible:</strong> - <em>Extends knockouts 'visible:' by executing the supplied Boolean VBA function</em></li>
+<li><strong>appInvoke:</strong> - Invokes an old-style actionpad app like textfileimport or duplicatemerge</li>
+</ul>
 <h3 id="translation-handling-multiple-languages">Translation: Handling multiple languages</h3>
 <p>All available translations from the Localization table are automatically available in the actionpad context. The same language as the logged in user uses is automatically used. The translations are cached in a dictionary to increase speed, but requires you to run <code>ThisApplication.Setup</code> to rebuild the dictionary if you add translations or make changes. </p>
 <pre class="prettyprint well"><code class="html">&lt;li data-bind=&quot;text:localize.ActionPad_Todo.addTodo&quot;&gt;&lt;/li&gt;
@@ -344,6 +351,14 @@ List of custom handlers:
 <p><strong>email</strong> - Creates an email. TODO: Should use LIME's built in email factory.</p>
 <p><code>html
 &lt;li data-bind="text:person.email.text, email:person.email.text, icon:'fa-mail'"&gt;&lt;/li&gt;</code></p>
+</li>
+</ul>
+<h3 id="start-textfileimport">Start textfileimport</h3>
+<ul>
+<li>
+<p><strong>appInvoke</strong></p>
+<p><code>html
+    &lt;li data-bind="appInvoke: 'textfileimport"&gt;&lt;/li&gt;</code></p>
 </li>
 </ul>
 <h3 id="working-with-time-and-dates">Working with time and dates</h3>
