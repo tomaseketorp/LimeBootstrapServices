@@ -354,7 +354,7 @@ var vm = {
                 <section>
                     <section>
                         <h2>Assignment 5:</h2><br>
-                        <p>Now once again happy, Vader decides he would like even more information. This time from the the related company card. He would like the name of the company (clickable of course) and company city with a map connection. Let's just jump into to it! How hard can it be? </p>
+                        <p>Now once again happy, Vader decides he would like even more information. This time from the the related company card. He would like the name of the company (clickable of course) and company city with a map connection adn company phone. Let's just jump into to it! How hard can it be? </p>
                     </section>
                     <section data-background="#F2F2F2" class="grey">
                         
@@ -390,11 +390,109 @@ var vm = {
                     </section>
                     <section data-background="#F2F2F2" class="grey">
                         <p>Your ActionPad will probably look like this:</p>
-                        <img src="img/error.png">
+                        <img src="img/error.png" height="30%">
                         <small>The red this is the debug log. She is our friend. She shows up if we make a bad mistake and tries to help us fix it. We can even have here around all the time to help us. Just open "_config.js" and set "debug=true". Do this now</small>
                     </section>
                     <section data-background="#F2F2F2" class="grey">
-                        <p>The console log says that "company is undefined". By default only the ActiveInspectors' data is loaded. Luckily we can ask for more data in "_config.js". Add a "person" node and use the "related record"-datasource.</p>
+                        <p>The console log says that "company is undefined". By default only the ActiveInspectors' data is loaded. Luckily we can ask for more data in "_config.js". Add a "person" node and a dataSource. There is a nice VBA function "ActionPadTools.GetCompanyContactData" which returns a related company record</p>
+                    </section>
+                    <section data-background="#F2F2F2" class="grey">
+                        
+                         <pre>
+                        <code class="javascript">
+lbs.externalConfig = {
+    /**
+    Enable or disable the debug console 
+    for the whole application
+    **/
+    debug: true,
+
+    /**
+    Configure special use cases,
+    mainly when requiring additional datasources
+    **/
+    config:{
+        'index' : {
+            dataSources: [
+                 { type: 'localization', source: '' },
+            ],
+            autorefresh : false
+        },
+
+        'person' : {
+            dataSources: [
+                {type: 'activeInspector', source: ''}, 
+                {type: 'localization', source: '' },
+                {type: 'record', source: 'ActionPadTools.GetCompanyContactData'}
+            ],
+            autorefresh : false
+        }
+    }
+}
+                        </code>
+                        </pre>
+                    </section>
+
+                </section>
+                <section>
+                    <section>
+                        <h2>Assignment 7:</h2><br>
+                        <p>Great! That went well! <br>Mr. Vader is overjoyed! He would now like a (evil) button to terminate the person! Say what? Well the customers whish is our law! We have prepared the most evil of functions: "ActionPad_Person.Terminate". Remember the text should work in many languages</p>
+                    </section>
+                    <section data-background="#F2F2F2" class="grey">
+                        
+                        <p>The localizations is cached in a variable in "Localize.dicLookup". You must invalidate the cache by setting the variable to nothing</p>
+                        <pre>
+                        <code class="html">
+...
+    <button class="btn btn-lime btn-error" data-bind=" vba:'ActionPad_Person.Terminate', text:localize.Actionpad_Person.terminate, icon:'fa-ban'">
+</button>
+...
+                        </code>
+                        </pre>
+                    </section>
+                     <section>
+                        <p>Nice! Helping the Empire do it's business!<br>
+                        Slight problem now. Due to your GUI the empire now tries to terminate allready dead people. The button should only be visible if the person is active! 
+                        </p>
+                    </section>
+                     <section data-background="#F2F2F2" class="grey">
+                        
+                        <pre>
+                        <code class="html">
+...
+    <button class="btn btn-lime btn-error" data-bind=" vba:'ActionPad_Person.Terminate', visible:person.active.value, text:localize.Actionpad_Person.terminate, icon:'fa-ban'">
+</button>
+...
+                        </code>
+                        </pre>
+                    </section>
+                    <section data-background="#F2F2F2" class="grey">
+                        <p>Problems! The function is now being a bit overused. The bodies are pilling up the garbage disposal plant<br>
+                        It should also only be visible for admins.
+                        </p>
+                    </section data-background="#F2F2F2" class="grey">
+                    <section>
+                        <p> Add a feature to show the time ago they where teminated. Checkout Moments "TimeAgo()"
+                        </p>
+                    </section>
+                </section>
+                <!-- Assignment 8-->
+                <section>
+                    <section>
+                        <h2>Assignment 8:</h2><br>
+                        <p>Due to a bit over use of the termination feature it is hard to find anybody alive at all. Mr. Vader would like to see a list of all persons on all companies with the same name as the persons company, their status and be able to go to them. There is a VBA function to help you load the data, called "ActionPad_Person.GetPersons". Checkout the KnockoutJS binding "For:"</p>
+                    </section>
+                </section>
+                <!-- Assignment 9-->
+                <section>
+                    <section>
+                        <h2>Assignment 9: Apps apps apps!</h2><br>
+                        <p>Vader whould like to see his total kill count on the Index ActionPad. There is an app for that! App the app: <a href="http://localhost:5000/web/appstore/index.html#infotile" target="_blank">Infotile</a> and make it nice! </p>
+                    </section>
+                    <section>
+                        <h2>Assignment 10: Let's make a app!</h2><br>
+                        <p>Due to the loss of two Death Stars (one mainly due to small furry teddy bears) the Empire it's looking into its engineering practices. They are a bit worried about your code in Assignment 8. Rewrite it as a app! You should beable to filter it.</p>
                     </section>
                 </section>
             </div>
